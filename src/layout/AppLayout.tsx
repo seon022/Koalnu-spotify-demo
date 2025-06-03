@@ -12,8 +12,22 @@ const Layout = styled("div")({
 	padding: "8px",
 });
 
+const MainContent = styled("main")(({ theme }) => ({
+	flexGrow: 1,
+	height: "100%",
+	padding: "8px",
+	borderRadius: "8px",
+	backgroundColor: theme.palette.background.paper,
+	margin: "0 8px",
+	[theme.breakpoints.down("sm")]: {
+		margin: 0,
+	},
+}));
+
 const Sidebar = styled("div")(({ theme }) => ({
-	width: "310px",
+	width: "25%",
+	minWidth: "240px",
+	maxWidth: "340px",
 	height: "100%",
 	display: "flex",
 	flexDirection: "column",
@@ -27,7 +41,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
 	backgroundColor: theme.palette.background.paper,
 	color: theme.palette.text.primary,
 	width: "100%",
-	padding: "8px",
+	padding: "8px 20px",
 	marginBottom: "8px",
 	marginRight: "8px",
 }));
@@ -74,12 +88,14 @@ const AppLayout = () => {
 						</StyledNavLink>
 					</NavList>
 				</ContentBox>
-				<ContentBox height={"100%"}>
+				<ContentBox sx={{ flexGrow: 1, marginBottom: 0 }}>
 					<LibraryHead />
 					<Library />
 				</ContentBox>
 			</Sidebar>
-			<Outlet />
+			<MainContent>
+				<Outlet />
+			</MainContent>
 		</Layout>
 	);
 };
