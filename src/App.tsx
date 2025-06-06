@@ -1,7 +1,8 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router";
 import LoadingSpinner from "./common/components/Loading/LoadingSpinner";
+import useExchangeToken from "./hooks/useExchageToken";
 
 const AppLayout = React.lazy(() => import("./layout/AppLayout"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
@@ -33,6 +34,17 @@ const PlaylistPage = React.lazy(
 // Suspense 아래에 있는 라우터들에 대해서 비동기 상태 관리 - 로딩 보여줌
 
 function App() {
+	const urlParams = new URLSearchParams(window.location.search);
+	let code = urlParams.get("code");
+	const codeVerifier = localStorage.getItem("code_verifier");
+
+	const { mutate: exchangeToken } = useExchangeToken();
+
+	useEffect(() => {
+		if (code && codeVerifier) {
+			exchangeToken({ code, codeVerifier });
+		}
+	}, [code, codeVerifier, exchangeToken]);
 	return (
 		<Suspense fallback={<LoadingSpinner />}>
 			<Routes>
