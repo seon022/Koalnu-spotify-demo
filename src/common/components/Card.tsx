@@ -1,11 +1,12 @@
-import React from "react";
 import {
-	Typography,
-	Card as MuiCard,
-	CardMedia,
-	CardContent,
 	Box,
+	Card as MuiCard,
+	CardContent,
+	CardMedia,
+	Typography,
 } from "@mui/material";
+import React from "react";
+
 import PlayButton from "./PlayButton";
 
 interface CardProps {

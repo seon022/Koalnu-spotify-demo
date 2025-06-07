@@ -1,18 +1,14 @@
-import useGetCurrentUserProfile from "../../../hooks/useGetCurrentUserProfile";
-import LoginButton from "../../../common/components/LoginButton";
-import useLogout from "../../../hooks/useLogout";
 import { Box } from "@mui/material";
-import ProfileToggle from "./ProfileToggle";
 import React from "react";
-import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
+
+import ProfileToggle from "./ProfileToggle";
+import LoginButton from "../../../common/components/LoginButton";
+import useGetCurrentUserProfile from "../../../hooks/useGetCurrentUserProfile";
+import useLogout from "../../../hooks/useLogout";
 
 const Navbar = () => {
 	const { data: userProfile } = useGetCurrentUserProfile();
 	const logout = useLogout();
-
-	React.useEffect(() => {
-		console.log("userProfile changed:", userProfile);
-	}, [userProfile]);
 
 	if (!userProfile)
 		return (

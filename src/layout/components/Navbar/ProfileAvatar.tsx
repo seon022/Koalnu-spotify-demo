@@ -1,6 +1,6 @@
-import React from "react";
-import { Avatar } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Avatar } from "@mui/material";
+import React from "react";
 
 interface ProfileAvatarProps {
 	imageUrl?: string;

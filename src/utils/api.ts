@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { SPOTIFY_BASE_URL } from "../configs/commonConfig";
 
 const api = axios.create({

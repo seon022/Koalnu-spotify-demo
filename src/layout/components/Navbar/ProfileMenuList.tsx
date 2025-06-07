@@ -1,12 +1,12 @@
-import React from "react";
 import {
-	Paper,
-	MenuList,
-	MenuItem,
-	Popper,
-	Grow,
 	ClickAwayListener,
+	Grow,
+	MenuItem,
+	MenuList,
+	Paper,
+	Popper,
 } from "@mui/material";
+import React from "react";
 
 interface ProfileMenuListProps {
 	open: boolean;

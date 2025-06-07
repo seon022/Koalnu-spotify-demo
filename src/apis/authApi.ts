@@ -1,10 +1,11 @@
 import axios from "axios";
+
 import { CLIENT_ID, CLIENT_SECRET } from "../configs/authConfig";
+import { REDIRECT_URI } from "../configs/commonConfig";
 import {
 	ClientCredentialTokenResponse,
 	ExchangeTokenResponse,
 } from "../models/auth";
-import { REDIRECT_URI } from "../configs/commonConfig";
 
 const encodedBase64 = (data: string): string => {
 	if (typeof window !== "undefined") {

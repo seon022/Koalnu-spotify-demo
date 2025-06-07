@@ -1,6 +1,8 @@
-import React, { Suspense, useEffect } from "react";
 import "./App.css";
-import { Routes, Route } from "react-router";
+
+import React, { Suspense, useEffect } from "react";
+import { Route,Routes } from "react-router";
+
 import LoadingSpinner from "./common/components/Loading/LoadingSpinner";
 import useExchangeToken from "./hooks/useExchageToken";
 

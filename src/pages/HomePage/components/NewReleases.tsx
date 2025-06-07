@@ -1,9 +1,9 @@
 import { Grid, Typography } from "@mui/material";
 
-import useGetNewReleases from "../../../hooks/useGetNewReleases";
-import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
-import ErrorMessage from "../../../common/components/ErrorMessage";
 import Card from "../../../common/components/Card";
+import ErrorMessage from "../../../common/components/ErrorMessage";
+import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
+import useGetNewReleases from "../../../hooks/useGetNewReleases";
 
 const NewReleases = () => {
 	const { data, error, isLoading } = useGetNewReleases();

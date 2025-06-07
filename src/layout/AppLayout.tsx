@@ -1,10 +1,11 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { Box, styled, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
-import LibraryHead from "./components/LibraryHead";
+import { Box, styled, Typography } from "@mui/material";
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
+
 import Library from "./components/Library";
+import LibraryHead from "./components/LibraryHead";
 import Navbar from "./components/Navbar/Navbar";
 
 const Layout = styled("div")(({ theme }) => ({

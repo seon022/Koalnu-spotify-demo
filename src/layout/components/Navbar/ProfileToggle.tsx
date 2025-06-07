@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
 import { IconButton } from "@mui/material";
+import React, { useRef, useState } from "react";
+
 import ProfileAvatar from "./ProfileAvatar";
 import ProfileMenu from "./ProfileMenuList";
 

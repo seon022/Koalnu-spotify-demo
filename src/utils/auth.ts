@@ -1,7 +1,7 @@
+import { base64encode, generateRandomString, sha256 } from "./crypto";
 import { CLIENT_ID } from "../configs/authConfig";
 import { REDIRECT_URI } from "../configs/commonConfig";
 import { AuthUrlParams } from "../models/auth";
-import { base64encode, generateRandomString, sha256 } from "./crypto";
 
 export const getSpotifyAuthUrl = async () => {
 	const codeVerifier = generateRandomString(64);
