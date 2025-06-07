@@ -1,4 +1,4 @@
-import { Box, Icon, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import LoginButton from "../../common/components/LoginButton";
 import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
@@ -6,7 +6,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Navbar = () => {
 	const { data: userProfile } = useGetCurrentUserProfile();
-	console.log(userProfile);
 	return (
 		<Box
 			display="flex"
