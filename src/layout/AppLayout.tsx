@@ -5,23 +5,27 @@ import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import LibraryHead from "./components/LibraryHead";
 import Library from "./components/Library";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 
-const Layout = styled("div")({
+const Layout = styled("div")(({ theme }) => ({
 	display: "flex",
 	height: "100vh",
 	padding: "8px",
-});
+	[theme.breakpoints.down("sm")]: {
+		padding: 0,
+	},
+}));
 
 const MainContent = styled("main")(({ theme }) => ({
 	flexGrow: 1,
 	height: "100%",
-	padding: "8px",
+	padding: "0 16px",
 	borderRadius: "8px",
 	backgroundColor: theme.palette.background.paper,
-	margin: "0 8px",
+	marginLeft: "8px",
 	[theme.breakpoints.down("sm")]: {
 		margin: 0,
+		padding: "16px",
 	},
 }));
 
