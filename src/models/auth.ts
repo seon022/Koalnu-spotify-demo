@@ -1,4 +1,3 @@
-import { exchangeToken } from "./../apis/authApi";
 export interface ClientCredentialTokenResponse {
 	access_token: string;
 	token_type: string;

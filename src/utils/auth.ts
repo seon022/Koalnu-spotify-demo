@@ -26,6 +26,6 @@ export const getSpotifyAuthUrl = async () => {
 			redirect_uri: redirectUri,
 		};
 		authUrl.search = new URLSearchParams(Object.entries(params)).toString();
-		window.location.href = authUrl.toString(); // spotify 로그인주소를 연다.
+		window.location.href = authUrl.toString();
 	}
 };
