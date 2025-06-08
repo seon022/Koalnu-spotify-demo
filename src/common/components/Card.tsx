@@ -21,7 +21,6 @@ const Card = ({ image, name, artistName }: CardProps) => {
       sx={{
         position: "relative",
         maxWidth: 280,
-        maxHeight: 280,
         overflow: "hidden",
         borderRadius: 2,
         boxShadow: 3,
@@ -40,10 +39,9 @@ const Card = ({ image, name, artistName }: CardProps) => {
       <Box sx={{ position: "relative" }}>
         <CardMedia
           component="img"
-          height="210"
           image={image}
           alt={name}
-          sx={{ objectFit: "cover" }}
+          sx={{ objectFit: "cover", maxHeight: 160 }}
         />
 
         <Box
@@ -62,7 +60,7 @@ const Card = ({ image, name, artistName }: CardProps) => {
           <PlayButton />
         </Box>
       </Box>
-      <CardContent sx={{ p: 1, pt: 2 }}>
+      <CardContent sx={{ p: 1, pt: 2, minHeight: 30, maxHeight: 70 }}>
         <Typography variant="subtitle2" fontWeight="bold" noWrap>
           {name}
         </Typography>
