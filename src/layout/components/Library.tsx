@@ -1,4 +1,6 @@
 import { styled } from "@mui/material/styles";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 import EmptyPlaylist from "./EmptyPlaylist";
 import Playlist from "./Playlist";
@@ -22,22 +24,39 @@ const PlaylistContainer = styled("div")(({ theme }) => ({
 }));
 
 const Library = () => {
+  const { ref, inView } = useInView();
   const { data: user, isLoading: isUserLoading } = useGetCurrentUserProfile();
 
-  const { data, isLoading, error } = useGetCurrentUserPlaylists({
-    limit: 20,
+  const {
+    data,
+    isLoading,
+    error,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useGetCurrentUserPlaylists({
+    limit: 10,
     offset: 0,
   });
-  console.log(data);
+  console.log("ddd", isFetchingNextPage);
 
-  if (!isUserLoading && !user) return <EmptyPlaylist />;
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView]);
+
+  if (!user) return <EmptyPlaylist />;
   if (isLoading || isUserLoading) return <LoadingSpinner />;
   if (error) return <ErrorMessage errorMessage={error.message} />;
-  if (!data || data.items.length === 0) return <EmptyPlaylist />;
+  if (!data || data?.pages[0].total === 0) return <EmptyPlaylist />;
 
   return (
     <PlaylistContainer>
-      <Playlist playlists={data.items} />
+      {data?.pages.map((page, index) => (
+        <Playlist playlists={page.items} key={index} />
+      ))}
+      <div ref={ref}>{hasNextPage && <LoadingSpinner />}</div>
     </PlaylistContainer>
   );
 };
