@@ -11,7 +11,7 @@ import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
 
 const PlaylistContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
-  maxHeight: "calc(100vh - 240px)",
+  maxHeight: "calc(100vh - 304px)",
   height: "100%",
   "&::-webkit-scrollbar": {
     display: "none",
@@ -38,7 +38,6 @@ const Library = () => {
     limit: 10,
     offset: 0,
   });
-  console.log("ddd", isFetchingNextPage);
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {

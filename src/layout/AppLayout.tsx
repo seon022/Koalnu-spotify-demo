@@ -9,8 +9,14 @@ import LibraryHead from "./components/LibraryHead";
 import Navbar from "./components/Navbar/Navbar";
 
 const Layout = styled("div")(({ theme }) => ({
-  display: "flex",
   height: "100vh",
+  display: "flex",
+  flexDirection: "column",
+}));
+const ContentsLayout = styled("div")(({ theme }) => ({
+  flexGrow: 1,
+  display: "flex",
+  height: "calc(100vh - 64px)",
   padding: "8px",
   [theme.breakpoints.down("sm")]: {
     padding: "8px 0",
@@ -20,13 +26,14 @@ const Layout = styled("div")(({ theme }) => ({
 const MainContent = styled("main")(({ theme }) => ({
   flexGrow: 1,
   height: "100%",
-  padding: "0 16px",
+  padding: "16px",
   borderRadius: "8px",
   backgroundColor: theme.palette.background.paper,
   marginLeft: "8px",
   [theme.breakpoints.down("sm")]: {
     margin: 0,
     padding: "16px",
+    backgroundColor: theme.palette.background.default,
   },
 }));
 
@@ -77,32 +84,34 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
 const AppLayout = () => {
   return (
     <Layout>
-      <Sidebar>
-        <ContentBox>
-          <NavList>
-            <StyledNavLink to="/">
-              <HomeIcon />
-              <Typography variant="h2" fontWeight={700}>
-                Home
-              </Typography>
-            </StyledNavLink>
-            <StyledNavLink to="/search">
-              <SearchIcon />
-              <Typography variant="h2" fontWeight={700}>
-                Search
-              </Typography>
-            </StyledNavLink>
-          </NavList>
-        </ContentBox>
-        <ContentBox sx={{ flexGrow: 1, marginBottom: 0 }}>
-          <LibraryHead />
-          <Library />
-        </ContentBox>
-      </Sidebar>
-      <MainContent>
-        <Navbar />
-        <Outlet />
-      </MainContent>
+      <Navbar />
+      <ContentsLayout>
+        <Sidebar>
+          <ContentBox>
+            <NavList>
+              <StyledNavLink to="/">
+                <HomeIcon />
+                <Typography variant="h2" fontWeight={700}>
+                  Home
+                </Typography>
+              </StyledNavLink>
+              <StyledNavLink to="/search">
+                <SearchIcon />
+                <Typography variant="h2" fontWeight={700}>
+                  Search
+                </Typography>
+              </StyledNavLink>
+            </NavList>
+          </ContentBox>
+          <ContentBox sx={{ marginBottom: 0 }}>
+            <LibraryHead />
+            <Library />
+          </ContentBox>
+        </Sidebar>
+        <MainContent>
+          <Outlet />
+        </MainContent>
+      </ContentsLayout>
     </Layout>
   );
 };

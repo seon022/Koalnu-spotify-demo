@@ -24,10 +24,10 @@ const Card = ({ image, name, artistName }: CardProps) => {
         overflow: "hidden",
         borderRadius: 2,
         boxShadow: 3,
-        backgroundColor: "background.default",
+        backgroundColor: "background.paper",
         transition: "transform 0.2s ease-in-out",
         "&:hover": {
-          backgroundColor: "background.paper",
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
           "& .hover-button": {
             transform: "translateY(0%)",
             opacity: 1,
