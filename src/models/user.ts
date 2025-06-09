@@ -1,16 +1,16 @@
-import { ExternalUrls, Followers, Image } from "./commonType";
+import { ExplicitContents, ExternalUrls, Followers, Image } from "./commonType";
 
 export interface User {
-	country?: string;
-	display_name?: string;
-	email?: string;
-	explicit_content?: ExternalUrls;
-	external_urls?: ExternalUrls;
-	followers?: Followers;
-	href?: string;
-	id?: string;
-	images?: Image[];
-	product?: string;
-	type?: string;
-	uri?: string;
+  country?: string;
+  display_name?: string;
+  email?: string;
+  explicit_content?: ExplicitContents;
+  external_urls?: ExternalUrls;
+  followers?: Followers;
+  href?: string;
+  id?: string;
+  images?: Image[];
+  product?: string;
+  type?: string;
+  uri?: string;
 }
