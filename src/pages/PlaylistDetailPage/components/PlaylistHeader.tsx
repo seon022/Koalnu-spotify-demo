@@ -7,13 +7,14 @@ export interface PlaylistHeaderProps {
   imageUrl: string;
   ownerName: string;
   tracksNumber: number;
+  type: string;
 }
 
 const Wrapper = styled(Box)(({ theme }) => ({
   display: "flex",
-  alignItems: "center",
+  alignItems: "start",
   gap: theme.spacing(3),
-  padding: theme.spacing(4),
+  padding: theme.spacing(3),
   background: "rgba(255, 255, 255, 0.03)",
   borderRadius: theme.spacing(2),
   color: "#fff",
@@ -21,8 +22,8 @@ const Wrapper = styled(Box)(({ theme }) => ({
 
 const PlaylistImage = styled(Box)(({ theme }) => ({
   width: 160,
-  height: 160,
-  borderRadius: theme.shape.borderRadius,
+  height: 140,
+  borderRadius: 4,
   overflow: "hidden",
   boxShadow: theme.shadows[4],
   flexShrink: 0,
@@ -37,6 +38,7 @@ const PlaylistHeader = ({
   imageUrl,
   ownerName,
   tracksNumber,
+  type,
 }: PlaylistHeaderProps) => {
   const hasImage = !!imageUrl;
 
@@ -55,7 +57,7 @@ const PlaylistHeader = ({
       </PlaylistImage>
       <Box>
         <Typography variant="overline" sx={{ opacity: 0.8 }}>
-          playlist
+          {type}
         </Typography>
         <Typography variant="h4" fontWeight="bold" gutterBottom>
           {name}

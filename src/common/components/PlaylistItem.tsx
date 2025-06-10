@@ -9,6 +9,7 @@ interface PlaylistItemProps {
   ownerName: string;
   id: string;
   handleClick: (id: string) => void;
+  selected?: boolean;
 }
 
 const PlaylistItem = ({
@@ -18,6 +19,7 @@ const PlaylistItem = ({
   ownerName,
   id,
   handleClick,
+  selected = false,
 }: PlaylistItemProps) => {
   return (
     <Box
@@ -31,8 +33,11 @@ const PlaylistItem = ({
         cursor: "pointer",
         borderRadius: 1,
         transition: "background-color 0.2s",
+        backgroundColor: selected ? "rgba(255,255,255,0.12)" : "transparent",
         "&:hover": {
-          backgroundColor: "rgba(255, 255, 255, 0.08)",
+          backgroundColor: selected
+            ? "rgba(255,255,255,0.12)"
+            : "rgba(255,255,255,0.08)",
         },
       }}
     >

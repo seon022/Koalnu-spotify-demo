@@ -7,14 +7,16 @@ import useGetPlaylist from "../../hooks/useGetPlaylist";
 const PlaylistDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const { data: playlist } = useGetPlaylist({ playlist_id: id ?? "" });
-  console.log("playlist", playlist);
 
   if (id === undefined) return <Navigate to="/" />;
+
+  const numberOfSongs = playlist?.tracks?.items.length ?? 0;
 
   return (
     <div>
       <PlaylistHeader
-        tracksNumber={playlist?.tracks?.items.length}
+        type={playlist?.type ?? ""}
+        tracksNumber={numberOfSongs > 0 ? numberOfSongs : 0}
         imageUrl={playlist?.images?.[0]?.url ?? ""}
         name={playlist?.name ?? ""}
         ownerName={playlist?.owner?.display_name ?? ""}

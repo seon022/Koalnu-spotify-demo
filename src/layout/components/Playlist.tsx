@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import PlaylistItem from "../../common/components/PlaylistItem";
@@ -9,8 +9,10 @@ interface PlaylistProps {
 }
 
 const Playlist = ({ playlists }: PlaylistProps) => {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const navigate = useNavigate();
   const handleClick = (id: string) => {
+    setSelectedId(id);
     navigate(`/playlist/${id}`);
   };
   return (
@@ -24,6 +26,7 @@ const Playlist = ({ playlists }: PlaylistProps) => {
           ownerName={item.owner?.display_name ?? "Unnamed"}
           imageUrl={item.images?.[0]?.url}
           type={item.type ?? ""}
+          selected={item.id === selectedId}
         />
       ))}
     </>
