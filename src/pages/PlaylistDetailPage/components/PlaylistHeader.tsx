@@ -63,7 +63,7 @@ const PlaylistHeader = ({
           {name}
         </Typography>
         <Typography variant="body1" sx={{ opacity: 0.9 }}>
-          {ownerName} : {tracksNumber} songs
+          😎 {ownerName} - 🎵 {tracksNumber} songs
         </Typography>
       </Box>
     </Wrapper>
