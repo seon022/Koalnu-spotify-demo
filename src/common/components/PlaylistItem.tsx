@@ -7,6 +7,8 @@ interface PlaylistItemProps {
   imageUrl?: string;
   name: string;
   ownerName: string;
+  id: string;
+  handleClick: (id: string) => void;
 }
 
 const PlaylistItem = ({
@@ -14,9 +16,12 @@ const PlaylistItem = ({
   imageUrl,
   name,
   ownerName,
+  id,
+  handleClick,
 }: PlaylistItemProps) => {
   return (
     <Box
+      onClick={() => handleClick(id)}
       display="flex"
       alignItems="center"
       gap={2}
