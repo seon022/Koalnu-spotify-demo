@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import PlaylistItem from "../../common/components/PlaylistItem";
 import { SimplifiedPlaylist } from "../../models/playlist";
@@ -9,10 +9,9 @@ interface PlaylistProps {
 }
 
 const Playlist = ({ playlists }: PlaylistProps) => {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const { id: selectedId } = useParams();
   const navigate = useNavigate();
   const handleClick = (id: string) => {
-    setSelectedId(id);
     navigate(`/playlist/${id}`);
   };
   return (
