@@ -21,16 +21,26 @@ import useGetPlaylistItems from "../../hooks/useGetPlaylistItem";
 
 const PlaylistContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
-  maxHeight: "calc(100vh - 304px)",
+  maxHeight: "calc(100vh - 300px)",
   height: "100%",
   "&::-webkit-scrollbar": {
     display: "none",
   },
+  marginTop: "10px",
+  paddingBottom: "30px",
   scrollbarWidth: "none",
   msOverflowStyle: "none",
+  borderRadius: "10px",
+  backgroundColor: theme.palette.background.paper,
   [theme.breakpoints.down("sm")]: {
     maxHeight: "calc(100vh - 65px - 119px)",
   },
+}));
+
+const CustomTableCell = styled(TableCell)(() => ({
+  backgroundColor: "rgba(24, 24, 27, 0.9)",
+  borderBottom: "none",
+  fontWeight: 600,
 }));
 
 const PlaylistDetailPage = () => {
@@ -47,6 +57,7 @@ const PlaylistDetailPage = () => {
   } = useGetPlaylistItems({ playlist_id: id ?? "", limit: PAGE_LIMIT });
 
   const { ref, inView } = useInView();
+  console.log("dd", playlistItems);
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
@@ -71,17 +82,17 @@ const PlaylistDetailPage = () => {
       />
 
       {numberOfSongs === 0 ? (
-        <Typography>No tracks in this playlist.</Typography>
+        <Typography>No tracks. Search</Typography>
       ) : (
         <PlaylistContainer>
-          <Table>
+          <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>#</TableCell>
-                <TableCell>Title</TableCell>
-                <TableCell>Album</TableCell>
-                <TableCell>Date added</TableCell>
-                <TableCell>Duration</TableCell>
+                <CustomTableCell>#</CustomTableCell>
+                <CustomTableCell>Title</CustomTableCell>
+                <CustomTableCell>Album</CustomTableCell>
+                <CustomTableCell>Date added</CustomTableCell>
+                <CustomTableCell>Duration</CustomTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -96,8 +107,9 @@ const PlaylistDetailPage = () => {
               )}
             </TableBody>
           </Table>
-          <div ref={ref} style={{ height: 1 }} />
-          {isFetchingNextPage && <LoadingSpinner />}
+          <div ref={ref} style={{ height: 40 }}>
+            {isFetchingNextPage && <LoadingSpinner />}
+          </div>
         </PlaylistContainer>
       )}
     </div>
