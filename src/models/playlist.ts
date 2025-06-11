@@ -35,15 +35,15 @@ export interface Playlist extends BasePlaylist {
 }
 
 export interface PlaylistTrack {
-  added_at: string;
-  added_by: {
+  added_at?: string | null;
+  added_by?: {
     external_urls?: ExternalUrls;
     href?: string;
     id?: string;
     type?: string;
     uri?: string;
-  };
-  is_local: boolean;
+  } | null;
+  is_local?: boolean;
   track: Track | Episode;
 }
 
@@ -53,3 +53,10 @@ export interface GetPlaylistRequest {
   fields?: string;
   additional_types?: string;
 }
+
+export interface GetPlaylistItemsRequest extends GetPlaylistRequest {
+  offset?: number;
+  limit?: number;
+}
+
+export type GetPlaylistItemsResponse = ApiResponse<PlaylistTrack>;

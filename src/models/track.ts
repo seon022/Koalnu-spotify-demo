@@ -1,40 +1,39 @@
 import { SimplifiedAlbum } from "./albums";
-import { Artist } from "./artist";
+import { SimplifiedArtist } from "./artist";
 import { ExternalUrls, Image } from "./commonType";
 
 export interface Track {
-  album: SimplifiedAlbum;
-  artists: Artist;
-  available_markets: string[];
-  disc_number: number;
-  duration_ms: number;
-  explicit: boolean;
-  external_ids: {
+  album?: SimplifiedAlbum;
+  artists?: SimplifiedArtist[];
+  available_markets?: string[];
+  disc_number?: number;
+  duration_ms?: number;
+  explicit?: boolean;
+  external_ids?: {
     isrc: string;
     ean: string;
     upc: string;
   };
-  external_urls: ExternalUrls;
-  href: string;
-  id: string;
-  is_playable: boolean;
-  linked_from: object;
-  name: string;
-  popularity: number;
-  preview_url: string | null;
-  track_number: number;
-  type: string;
-  uri: string;
-  is_local: boolean;
+  external_urls?: ExternalUrls;
+  href?: string;
+  id?: string;
+  is_playable?: boolean;
+  linked_from?: Track;
+  name?: string;
+  popularity?: number;
+  preview_url?: string | null;
+  track_number?: number;
+  type?: "track";
+  uri?: string;
+  is_local?: boolean;
 }
 
 export interface Episode {
-  audio_preview_url: string | null;
   description: string;
   html_description: string;
   duration_ms: number;
   explicit: boolean;
-  external_urls: { spotify: string };
+  external_urls: ExternalUrls;
   href: string;
   id: string;
   images: Image[];
@@ -48,7 +47,7 @@ export interface Episode {
     fully_played: boolean;
     resume_position_ms: number;
   };
-  type: string;
+  type: "episode";
   uri: string;
   restriction?: {
     reason?: string;
@@ -61,7 +60,7 @@ export interface Show {
   description: string;
   html_description: string;
   explicit: boolean;
-  external_urls: { spotify: string };
+  external_urls: ExternalUrls;
   href: string;
   id: string;
   images: Image[];
@@ -70,7 +69,7 @@ export interface Show {
   media_type: string;
   name: string;
   publisher: string;
-  type: string;
+  type: "show";
   uri: string;
   total_episodes: number;
 }
