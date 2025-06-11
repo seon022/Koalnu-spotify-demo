@@ -1,13 +1,15 @@
 import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const useLogout = () => {
-	const queryClient = useQueryClient();
-	return () => {
-		localStorage.removeItem("access_token");
-		queryClient.removeQueries({ queryKey: ["current-user-profile"] });
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  return () => {
+    localStorage.removeItem("access_token");
+    queryClient.removeQueries({ queryKey: ["current-user-profile"] });
 
-		window.location.reload();
-	};
+    navigate("/");
+  };
 };
 
 export default useLogout;
