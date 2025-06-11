@@ -57,7 +57,6 @@ const PlaylistDetailPage = () => {
   } = useGetPlaylistItems({ playlist_id: id ?? "", limit: PAGE_LIMIT });
 
   const { ref, inView } = useInView();
-  console.log("dd", playlistItems);
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
