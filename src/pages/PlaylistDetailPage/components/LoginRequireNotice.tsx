@@ -1,17 +1,7 @@
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import LoginIcon from "@mui/icons-material/Login";
-import { Box, Button, Typography } from "@mui/material";
-import { keyframes } from "@mui/material/styles";
+import { Box, Typography } from "@mui/material";
 
 import LoginButton from "../../../common/components/LoginButton";
-
-const wiggle = keyframes`
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(3deg); }
-  50% { transform: rotate(-3deg); }
-  75% { transform: rotate(2deg); }
-  100% { transform: rotate(0deg); }
-`;
 
 const LoginRequiredNotice = () => (
   <Box
@@ -32,7 +22,6 @@ const LoginRequiredNotice = () => (
         fontSize: 60,
         color: "#3ebc6a",
         mb: 2,
-        animation: `${wiggle} 2s infinite`,
       }}
     />
     <Typography variant="h5" fontWeight="bold" mb={3}>
