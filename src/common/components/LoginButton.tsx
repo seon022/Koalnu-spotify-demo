@@ -8,7 +8,7 @@ const LoginButton = () => {
     getSpotifyAuthUrl();
   };
   return (
-    <Button variant="contained" color="secondary" size="medium" onClick={login}>
+    <Button variant="contained" color="secondary" size="large" onClick={login}>
       Login
     </Button>
   );

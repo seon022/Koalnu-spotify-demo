@@ -1,4 +1,8 @@
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import LoginIcon from "@mui/icons-material/Login";
 import {
+  Box,
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -6,16 +10,19 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { keyframes, styled } from "@mui/material/styles";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { Navigate, useParams } from "react-router-dom";
 
 import DesktopPlaylistItem from "./components/DesktopPlaylistItem";
+import EmptyPlaylistItemWithSearch from "./components/EmptyPlaylistItemWithSearch";
+import LoginRequiredNotice from "./components/LoginRequireNotice";
 import PlaylistHeader from "./components/PlaylistHeader";
 import ErrorMessage from "../../common/components/ErrorMessage";
 import LoadingSpinner from "../../common/components/Loading/LoadingSpinner";
 import { PAGE_LIMIT } from "../../configs/commonConfig";
+import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
 import useGetPlaylist from "../../hooks/useGetPlaylist";
 import useGetPlaylistItems from "../../hooks/useGetPlaylistItem";
 
@@ -45,7 +52,10 @@ const CustomTableCell = styled(TableCell)(() => ({
 
 const PlaylistDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { data: playlist } = useGetPlaylist({ playlist_id: id ?? "" });
+  const { data: playlist } = useGetPlaylist({
+    playlist_id: id ?? "",
+  });
+  const { data: userProfile } = useGetCurrentUserProfile();
 
   const {
     data: playlistItems,
@@ -58,17 +68,23 @@ const PlaylistDetailPage = () => {
 
   const { ref, inView } = useInView();
 
+  const numberOfSongs = playlist?.tracks?.total ?? 0;
+
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  if (!userProfile) {
+    return <LoginRequiredNotice />;
+  }
+
+  if (error) {
+    return <ErrorMessage errorMessage="Failed to load" />;
+  }
   if (id === undefined) return <Navigate to="/" />;
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <ErrorMessage errorMessage={error.message} />;
-
-  const numberOfSongs = playlist?.tracks?.total ?? 0;
 
   return (
     <div>
@@ -81,7 +97,7 @@ const PlaylistDetailPage = () => {
       />
 
       {numberOfSongs === 0 ? (
-        <Typography>No tracks. Search</Typography>
+        <EmptyPlaylistItemWithSearch />
       ) : (
         <PlaylistContainer>
           <Table stickyHeader aria-label="sticky table">

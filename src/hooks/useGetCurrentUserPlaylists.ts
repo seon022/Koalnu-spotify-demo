@@ -20,6 +20,7 @@ const useGetCurrentUserPlaylists = ({
         return nextOffset ? parseInt(nextOffset) : undefined;
       }
     },
+    refetchOnMount: true,
   });
 };
 

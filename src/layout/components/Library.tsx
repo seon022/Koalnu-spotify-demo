@@ -25,7 +25,8 @@ const PlaylistContainer = styled("div")(({ theme }) => ({
 
 const Library = () => {
   const { ref, inView } = useInView();
-  const { data: user, isLoading: isUserLoading } = useGetCurrentUserProfile();
+  const { data: userProfile, isLoading: isUserLoading } =
+    useGetCurrentUserProfile();
 
   const {
     data,
@@ -43,9 +44,12 @@ const Library = () => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  if (!user) return <EmptyPlaylist />;
+  if ((error as any)?.status === "401") {
+    return <EmptyPlaylist />;
+  }
+  if (!userProfile) return <EmptyPlaylist />;
   if (isLoading || isUserLoading) return <LoadingSpinner />;
   if (error) return <ErrorMessage errorMessage={error.message} />;
   if (!data || data?.pages[0].total === 0) return <EmptyPlaylist />;
