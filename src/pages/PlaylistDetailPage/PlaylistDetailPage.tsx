@@ -1,16 +1,11 @@
-import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import LoginIcon from "@mui/icons-material/Login";
 import {
-  Box,
-  Button,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  Typography,
 } from "@mui/material";
-import { keyframes, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { Navigate, useParams } from "react-router-dom";
@@ -28,13 +23,12 @@ import useGetPlaylistItems from "../../hooks/useGetPlaylistItem";
 
 const PlaylistContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
-  maxHeight: "calc(100vh - 300px)",
+  maxHeight: "calc(100vh - 180px)",
   height: "100%",
   "&::-webkit-scrollbar": {
     display: "none",
   },
   marginTop: "10px",
-  paddingBottom: "30px",
   scrollbarWidth: "none",
   msOverflowStyle: "none",
   borderRadius: "10px",
@@ -122,9 +116,7 @@ const PlaylistDetailPage = () => {
               )}
             </TableBody>
           </Table>
-          <div ref={ref} style={{ height: 40 }}>
-            {isFetchingNextPage && <LoadingSpinner />}
-          </div>
+          <div ref={ref}>{isFetchingNextPage && <LoadingSpinner />}</div>
         </PlaylistContainer>
       )}
     </div>

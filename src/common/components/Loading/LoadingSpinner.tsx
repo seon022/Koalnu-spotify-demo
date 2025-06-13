@@ -7,7 +7,7 @@ const LoadingSpinner = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: 60,
+        minHeight: "30px",
       }}
     >
       <BeatLoader color="#1DB954" size={12} margin={2} />

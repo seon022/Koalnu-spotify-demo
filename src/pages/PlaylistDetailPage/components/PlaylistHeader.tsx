@@ -13,19 +13,19 @@ export interface PlaylistHeaderProps {
 const Wrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "start",
-  gap: theme.spacing(3),
-  padding: theme.spacing(3),
+  gap: theme.spacing(2),
+  padding: theme.spacing(2),
   background: "rgba(255, 255, 255, 0.03)",
   borderRadius: theme.spacing(2),
   color: "#fff",
 }));
 
 const PlaylistImage = styled(Box)(({ theme }) => ({
-  width: 160,
-  height: 140,
+  width: 120,
+  height: 100,
   borderRadius: 4,
   overflow: "hidden",
-  boxShadow: theme.shadows[4],
+  boxShadow: theme.shadows[2],
   flexShrink: 0,
   backgroundColor: "#333",
   display: "flex",
