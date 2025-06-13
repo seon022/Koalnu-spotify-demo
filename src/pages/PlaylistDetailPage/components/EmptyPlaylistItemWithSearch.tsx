@@ -18,7 +18,7 @@ const SearchWrapper = styled("div")(() => ({
 
 const SearchResultContainer = styled("div")(() => ({
   overflowY: "auto",
-  maxHeight: "calc(100vh - 400px)",
+  maxHeight: "calc(100vh - 420px)",
   flex: 1,
   "&::-webkit-scrollbar": {
     display: "none",

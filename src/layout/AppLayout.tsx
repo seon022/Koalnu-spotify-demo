@@ -103,7 +103,7 @@ const AppLayout = () => {
               </StyledNavLink>
             </NavList>
           </ContentBox>
-          <ContentBox sx={{ marginBottom: 0 }}>
+          <ContentBox sx={{ marginBottom: 0, flex: 1 }}>
             <LibraryHead />
             <Library />
           </ContentBox>
