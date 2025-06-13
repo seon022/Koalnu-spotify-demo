@@ -14,7 +14,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "start",
   gap: theme.spacing(2),
-  padding: theme.spacing(2),
+  padding: "24px 20px",
   background: "rgba(255, 255, 255, 0.03)",
   borderRadius: theme.spacing(2),
   color: "#fff",
@@ -24,9 +24,9 @@ const PlaylistImage = styled(Box)(({ theme }) => ({
   width: 120,
   height: 100,
   borderRadius: 4,
+  marginRight: 12,
   overflow: "hidden",
   boxShadow: theme.shadows[2],
-  flexShrink: 0,
   backgroundColor: "#333",
   display: "flex",
   alignItems: "center",
@@ -59,7 +59,7 @@ const PlaylistHeader = ({
         <Typography variant="overline" sx={{ opacity: 0.8 }}>
           {type}
         </Typography>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
+        <Typography variant="h5" fontWeight="bold" gutterBottom>
           {name}
         </Typography>
         <Typography variant="body1" sx={{ opacity: 0.9 }}>

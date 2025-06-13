@@ -1,4 +1,5 @@
-import { styled, TextField, Typography } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { styled, alpha, Typography, InputBase } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -15,7 +16,7 @@ const SearchWrapper = styled("div")(() => ({
   paddingBottom: "10px",
 }));
 
-const SearchResultContainer = styled("div")(({ theme }) => ({
+const SearchResultContainer = styled("div")(() => ({
   overflowY: "auto",
   maxHeight: "calc(100vh - 400px)",
   flex: 1,
@@ -27,9 +28,23 @@ const SearchResultContainer = styled("div")(({ theme }) => ({
   borderRadius: "10px",
 }));
 
+const SearchBox = styled("div")(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.1),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.2),
+  },
+  width: "100%",
+  maxWidth: 500,
+  display: "flex",
+  alignItems: "center",
+  marginBottom: "20px",
+}));
+
 const EmptyPlaylistItemWithSearch = () => {
   const { ref, inView } = useInView();
   const [keyword, setKeyword] = useState<string>("");
+
   const {
     data,
     error,
@@ -43,7 +58,6 @@ const EmptyPlaylistItemWithSearch = () => {
     limit: 10,
     offset: 0,
   });
-  console.log("ddd", data);
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
@@ -52,36 +66,48 @@ const EmptyPlaylistItemWithSearch = () => {
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const handleSearchKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(event?.target.value);
+    setKeyword(event.target.value);
   };
+
   return (
     <SearchWrapper>
       <Typography variant="h1" my={4}>
         Let's find something for your playlist!
       </Typography>
-      <TextField
-        value={keyword}
-        placeholder="Search for songs, artists"
-        onChange={handleSearchKeyword}
-        sx={{
-          mb: 2,
-          width: "100%",
-          maxWidth: 500,
-          borderRadius: 1,
-          boxShadow: 1,
-          "& .MuiOutlinedInput-root": {
-            "&.Mui-focused fieldset": {
-              borderColor: "primary.main",
-            },
-          },
-        }}
-      />
+
+      <SearchBox>
+        <SearchIcon
+          sx={{
+            marginLeft: "12px",
+          }}
+        />
+        <InputBase
+          value={keyword}
+          placeholder="Search for songs, artists"
+          onChange={handleSearchKeyword}
+          sx={{
+            color: "white",
+            width: "100%",
+            padding: "10px 12px 10px 10px",
+          }}
+        />
+      </SearchBox>
+
       <SearchResultContainer>
+        {isLoading && <LoadingSpinner />}
+        {!isLoading &&
+          keyword.trim() !== "" &&
+          data?.pages.every((page) => page.tracks?.items?.length === 0) && (
+            <Typography
+              variant="h6"
+              sx={{ mt: 4, textAlign: "center", color: "gray" }}
+            >
+              "{keyword}" 와 일치하는 검색 결과가 없습니다.🥲
+            </Typography>
+          )}
         {data?.pages.map((item) => {
           if (!item.tracks) return false;
-          return (
-            <SearchResultList list={item.tracks?.items}></SearchResultList>
-          );
+          return <SearchResultList list={item.tracks?.items} />;
         })}
         <div ref={ref}>{hasNextPage && <LoadingSpinner />}</div>
       </SearchResultContainer>
