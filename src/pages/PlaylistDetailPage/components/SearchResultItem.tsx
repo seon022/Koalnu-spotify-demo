@@ -1,6 +1,8 @@
 import { Box, Typography, Button, Avatar } from "@mui/material";
 import React from "react";
+import { useParams } from "react-router-dom";
 
+import useAddItemToPlaylist from "../../../hooks/useAddItemToPlaylist";
 import { Track } from "../../../models/track";
 
 interface SearchResultItemProps {
@@ -8,9 +10,15 @@ interface SearchResultItemProps {
 }
 
 const SearchResultItem = ({ item }: SearchResultItemProps) => {
+  const { id: playlistId } = useParams<{ id: string }>();
+  const { mutate: addItem } = useAddItemToPlaylist();
   const trackImage = item.album?.images?.[0]?.url || "";
   const artistName = item.artists?.[0].name;
   const albumName = item.album?.name;
+
+  const handleAddItem = () => {
+    if (item.uri && playlistId) addItem({ uris: [item.uri], position: 0 });
+  };
 
   return (
     <Box
@@ -22,8 +30,9 @@ const SearchResultItem = ({ item }: SearchResultItemProps) => {
       borderRadius={2}
       borderBottom="1px solid rgba(224, 224, 224, 0.2)"
       sx={{
+        cursor: "pointer",
         "&:hover": {
-          backgroundColor: "#373b37",
+          backgroundColor: "#353b35",
         },
       }}
     >
@@ -69,7 +78,7 @@ const SearchResultItem = ({ item }: SearchResultItemProps) => {
       </Box>
 
       <Box>
-        <Button variant="outlined" size="small">
+        <Button variant="outlined" size="small" onClick={handleAddItem}>
           Add
         </Button>
       </Box>

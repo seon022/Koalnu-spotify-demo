@@ -105,9 +105,11 @@ const EmptyPlaylistItemWithSearch = () => {
               "{keyword}" 와 일치하는 검색 결과가 없습니다.🥲
             </Typography>
           )}
-        {data?.pages.map((item) => {
+        {data?.pages.map((item, index) => {
           if (!item.tracks) return false;
-          return <SearchResultList list={item.tracks?.items} />;
+          return (
+            <SearchResultList key={index} list={item.tracks?.items || []} />
+          );
         })}
         <div ref={ref}>{hasNextPage && <LoadingSpinner />}</div>
       </SearchResultContainer>
