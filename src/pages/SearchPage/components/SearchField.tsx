@@ -3,13 +3,14 @@ import { styled, alpha, InputBase } from "@mui/material";
 import React from "react";
 
 const SearchBox = styled("div")(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius,
+  margin: "0 auto",
+  borderRadius: "20px",
   backgroundColor: alpha(theme.palette.common.white, 0.1),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.2),
   },
   width: "100%",
-  maxWidth: 500,
+  maxWidth: 700,
   display: "flex",
   alignItems: "center",
   marginBottom: "20px",

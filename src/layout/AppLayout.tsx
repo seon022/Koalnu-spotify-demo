@@ -24,6 +24,7 @@ const ContentsLayout = styled("div")(({ theme }) => ({
 }));
 
 const MainContent = styled("main")(({ theme }) => ({
+  width: "75%",
   flexGrow: 1,
   height: "100%",
   padding: "16px",

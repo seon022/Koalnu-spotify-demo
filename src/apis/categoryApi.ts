@@ -15,6 +15,6 @@ export const getBrowseCategories = async ({
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to fetch browse categories");
+    throw error;
   }
 };

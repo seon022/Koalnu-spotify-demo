@@ -1,14 +1,31 @@
 import { Grid, styled } from "@mui/material";
+import { AxiosError } from "axios";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-import Card from "../../../common/components/Card";
+import CategoryCard from "./CategoryCard";
+import ErrorMessage from "../../../common/components/ErrorMessage";
 import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
 import useGetBrowseCategories from "../../../hooks/useGetBrowseCategories";
+import LoginRequiredNotice from "../../PlaylistDetailPage/components/LoginRequireNotice";
+
+const COLORS = [
+  "#cc9000",
+  "#3570a3",
+  "#4e835d",
+  "#7b4e7e",
+  "#a13d3d",
+  "#b89d28",
+  "#2a8b93",
+  "#6b5542",
+  "#5a6a77",
+  "#a0446a",
+];
 
 const CategoriesContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
-  maxHeight: "calc(100vh - 120px)",
+  width: "100%",
+  maxHeight: "calc(100vh - 180px)",
   height: "100%",
   "&::-webkit-scrollbar": {
     display: "none",
@@ -18,6 +35,7 @@ const CategoriesContainer = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     maxHeight: "calc(100vh - 65px - 119px)",
   },
+  cursor: "pointer",
 }));
 
 const BrowseCategories = () => {
@@ -39,21 +57,30 @@ const BrowseCategories = () => {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  if (isLoading) return <div>로딩 중...</div>;
-  if (isError) return <div>에러 발생: {(error as Error).message}</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) {
+    if ((error as AxiosError).status === 401) {
+      return <LoginRequiredNotice />;
+    }
+    return <ErrorMessage errorMessage={(error as Error).message} />;
+  }
 
   const categories = data?.pages.flatMap((page) => page.categories.items) ?? [];
-  console.log("cate", categories);
+
   return (
     <CategoriesContainer>
-      <h2>Spotify 카테고리 목록</h2>
-      <Grid container spacing={2}>
-        {categories.map((item) => (
-          <Grid size={{ xs: 6, sm: 4, md: 2 }} key={item.id}>
-            <Card
-              image={item.icons[0].url}
+      <h2>둘러보기</h2>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 3, sm: 6, md: 12, lg: 12, xl: 12 }}
+      >
+        {categories.map((item, idx) => (
+          <Grid size={{ xs: 1, sm: 3, md: 4, lg: 4, xl: 3 }} key={item.id}>
+            <CategoryCard
+              iconUrl={item.icons[0].url}
               name={item.name}
-              artistName={item.name}
+              color={COLORS[idx % COLORS.length]}
             />
           </Grid>
         ))}

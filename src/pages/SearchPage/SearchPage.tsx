@@ -10,7 +10,6 @@ const SearchPage = () => {
       <SearchField
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
-        placeholder="Search for songs, artists"
       />
       <BrowseCategories />
       {/* <SearchResultList /> */}
