@@ -1,13 +1,15 @@
 import { Card as MuiCard, Typography, Box } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
+
+import { getRandomColor } from "../../../utils/getRandomColors";
 
 interface CategoryCardProps {
   name: string;
   iconUrl: string;
-  color: string;
 }
 
-function CategoryCard({ name, iconUrl, color }: CategoryCardProps) {
+function CategoryCard({ name, iconUrl }: CategoryCardProps) {
+  const color = useMemo(() => getRandomColor(), []);
   return (
     <MuiCard
       sx={{

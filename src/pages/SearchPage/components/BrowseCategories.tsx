@@ -9,19 +9,6 @@ import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
 import useGetBrowseCategories from "../../../hooks/useGetBrowseCategories";
 import LoginRequiredNotice from "../../PlaylistDetailPage/components/LoginRequireNotice";
 
-const COLORS = [
-  "#cc9000",
-  "#3570a3",
-  "#4e835d",
-  "#7b4e7e",
-  "#a13d3d",
-  "#b89d28",
-  "#2a8b93",
-  "#6b5542",
-  "#5a6a77",
-  "#a0446a",
-];
-
 const CategoriesContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
   width: "100%",
@@ -77,11 +64,7 @@ const BrowseCategories = () => {
       >
         {categories.map((item, idx) => (
           <Grid size={{ xs: 1, sm: 3, md: 4, lg: 4, xl: 3 }} key={item.id}>
-            <CategoryCard
-              iconUrl={item.icons[0].url}
-              name={item.name}
-              color={COLORS[idx % COLORS.length]}
-            />
+            <CategoryCard iconUrl={item.icons[0].url} name={item.name} />
           </Grid>
         ))}
       </Grid>
