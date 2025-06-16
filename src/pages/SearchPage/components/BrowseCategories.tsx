@@ -1,10 +1,24 @@
-import { Grid } from "@mui/material";
+import { Grid, styled } from "@mui/material";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 import Card from "../../../common/components/Card";
 import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
 import useGetBrowseCategories from "../../../hooks/useGetBrowseCategories";
+
+const CategoriesContainer = styled("div")(({ theme }) => ({
+  overflowY: "auto",
+  maxHeight: "calc(100vh - 120px)",
+  height: "100%",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+  scrollbarWidth: "none",
+  msOverflowStyle: "none",
+  [theme.breakpoints.down("sm")]: {
+    maxHeight: "calc(100vh - 65px - 119px)",
+  },
+}));
 
 const BrowseCategories = () => {
   const {
@@ -29,9 +43,9 @@ const BrowseCategories = () => {
   if (isError) return <div>에러 발생: {(error as Error).message}</div>;
 
   const categories = data?.pages.flatMap((page) => page.categories.items) ?? [];
-  console.log("data", categories);
+  console.log("cate", categories);
   return (
-    <div>
+    <CategoriesContainer>
       <h2>Spotify 카테고리 목록</h2>
       <Grid container spacing={2}>
         {categories.map((item) => (
@@ -45,7 +59,7 @@ const BrowseCategories = () => {
         ))}
       </Grid>
       <div ref={ref}>{hasNextPage && <LoadingSpinner />}</div>
-    </div>
+    </CategoriesContainer>
   );
 };
 
