@@ -11,7 +11,6 @@ export const getBrowseCategories = async (
   { locale, limit, offset }: GetSeveralBrowseCategoriesRequest,
 ): Promise<GetSeveralBrowseCategoriesResponse> => {
   try {
-    console.log(locale, limit, offset);
     const response = await axios.get(`${SPOTIFY_BASE_URL}/browse/categories`, {
       headers: { Authorization: `Bearer ${clientCredentialToken}` },
       params: { locale, limit, offset },

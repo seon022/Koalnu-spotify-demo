@@ -10,7 +10,7 @@ export const searchItemsByKeyword = async (
   try {
     const searchParams = new URLSearchParams();
     searchParams.append("q", params.q);
-    searchParams.append("type", params.type.join(""));
+    searchParams.append("type", params.type.join(","));
 
     if (params.market) searchParams.append("market", params.market);
     if (params.limit) searchParams.append("limit", params.limit.toString());

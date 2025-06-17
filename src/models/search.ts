@@ -11,7 +11,7 @@ export const enum SEARCH_TYPE {
   Show = "show",
   Episode = "episode",
   AudioBook = "audiobook",
-  Artist = "aritst",
+  Artist = "artist",
 }
 
 export interface SearchRequestParams {

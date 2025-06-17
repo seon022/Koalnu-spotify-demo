@@ -40,7 +40,7 @@ function CategoryCard({ name, iconUrl }: CategoryCardProps) {
           height: 180,
           borderRadius: "50%",
           background: `url(${iconUrl}) center/cover no-repeat`,
-          opacity: 0.22,
+          opacity: 0.4,
           zIndex: 1,
           pointerEvents: "none",
           transform: "scale(1)",
