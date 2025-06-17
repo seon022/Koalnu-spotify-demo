@@ -15,20 +15,27 @@ const SearchBox = styled("div")(({ theme }) => ({
   alignItems: "center",
   marginBottom: "20px",
 }));
-
+const SearchButton = styled("div")(({ theme }) => ({
+  color: "#fff",
+}));
 interface SearchFieldProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+  onClick: (e: React.SyntheticEvent) => void;
 }
 
 const SearchField = ({
   value,
   onChange,
+  onClick,
   placeholder = "검색어를 입력하세요",
 }: SearchFieldProps) => (
   <SearchBox>
-    <SearchIcon sx={{ marginLeft: "12px" }} />
+    <SearchButton onClick={onClick}>
+      <SearchIcon sx={{ marginLeft: "12px" }} />
+    </SearchButton>
+
     <InputBase
       value={value}
       placeholder={placeholder}
