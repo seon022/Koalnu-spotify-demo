@@ -1,16 +1,19 @@
+import axios from "axios";
+
+import { SPOTIFY_BASE_URL } from "../configs/commonConfig";
 import {
   GetSeveralBrowseCategoriesRequest,
   GetSeveralBrowseCategoriesResponse,
 } from "../models/category";
-import api from "../utils/api";
 
-export const getBrowseCategories = async ({
-  locale,
-  limit,
-  offset,
-}: GetSeveralBrowseCategoriesRequest): Promise<GetSeveralBrowseCategoriesResponse> => {
+export const getBrowseCategories = async (
+  clientCredentialToken: string,
+  { locale, limit, offset }: GetSeveralBrowseCategoriesRequest,
+): Promise<GetSeveralBrowseCategoriesResponse> => {
   try {
-    const response = await api.get(`/browse/categories`, {
+    console.log(locale, limit, offset);
+    const response = await axios.get(`${SPOTIFY_BASE_URL}/browse/categories`, {
+      headers: { Authorization: `Bearer ${clientCredentialToken}` },
       params: { locale, limit, offset },
     });
     return response.data;

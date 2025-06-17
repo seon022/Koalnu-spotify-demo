@@ -24,9 +24,14 @@ function CategoryCard({ name, iconUrl }: CategoryCardProps) {
         "&:hover": {
           backgroundColor: "rgba(255, 255, 255, 0.1)",
         },
+        transition: "background-color 0.2s ease",
+        "&:hover .icon-bg": {
+          transform: "scale(1.18)",
+        },
       }}
     >
       <Box
+        className="icon-bg"
         sx={{
           position: "absolute",
           right: -30,
@@ -38,6 +43,8 @@ function CategoryCard({ name, iconUrl }: CategoryCardProps) {
           opacity: 0.22,
           zIndex: 1,
           pointerEvents: "none",
+          transform: "scale(1)",
+          transition: "transform 0.3s ease-in-out",
         }}
       />
       <Box
