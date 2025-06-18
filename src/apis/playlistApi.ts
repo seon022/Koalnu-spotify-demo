@@ -68,11 +68,10 @@ export const createPlaylist = async (
   }
 };
 export const AddItemToPlaylist = async (
-  playlist_id: string,
   params: AddItemToPlaylistRequest,
 ): Promise<{ snapshot_id: string }> => {
   try {
-    const { position, uris } = params;
+    const { playlist_id, position, uris } = params;
     const response = await api.post(`/playlists/${playlist_id}/tracks`, {
       position,
       uris,

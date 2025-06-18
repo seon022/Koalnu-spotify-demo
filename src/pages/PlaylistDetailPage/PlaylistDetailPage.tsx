@@ -23,7 +23,7 @@ import useGetPlaylistItems from "../../hooks/useGetPlaylistItem";
 
 const PlaylistContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
-  maxHeight: "calc(100vh - 180px)",
+  maxHeight: "calc(100vh - 270px)",
   height: "100%",
   "&::-webkit-scrollbar": {
     display: "none",
@@ -116,7 +116,7 @@ const PlaylistDetailPage = () => {
               )}
             </TableBody>
           </Table>
-          <div ref={ref}>{isFetchingNextPage && <LoadingSpinner />}</div>
+          <div ref={ref}>{hasNextPage && <LoadingSpinner />}</div>
         </PlaylistContainer>
       )}
     </div>

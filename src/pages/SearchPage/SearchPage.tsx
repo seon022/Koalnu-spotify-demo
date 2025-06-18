@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import BrowseCategories from "./components/BrowseCategories";
-import SearchField from "./components/SearchResultComponents/SearchField";
+import SearchField from "../../common/components/SearchField";
 
 const SearchPage = () => {
   const [inputValue, setInputValue] = useState("");

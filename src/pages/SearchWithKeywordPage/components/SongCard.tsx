@@ -1,11 +1,16 @@
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { Box, Typography, IconButton, styled, Button } from "@mui/material";
+import { Box, Typography, IconButton, styled } from "@mui/material";
 import React from "react";
-import { transform } from "typescript";
 
-import { Track } from "../../../../models/track";
+import PlaylistMenu from "./PlaylistMenu";
+import ErrorMessage from "../../../common/components/ErrorMessage";
+import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
+import useAddItemToPlaylist from "../../../hooks/useAddItemToPlaylist";
+import useGetCurrentUserPlaylists from "../../../hooks/useGetCurrentUserPlaylists";
+import { Track } from "../../../models/track";
+import { formatDuration } from "../../../utils/formatters";
 
 interface SongCardProps {
   list: Track[];
@@ -83,20 +88,6 @@ const DurationText = styled(Typography)({
   whiteSpace: "nowrap",
 });
 
-const AddButton = styled(IconButton)(({ theme }) => ({
-  marginRight: 16,
-  opacity: 0,
-  visibility: "hidden",
-  pointerEvents: "none",
-  color: "#b3b3b3",
-  backgroundColor: "#2a2a2a",
-  width: 32,
-  height: 32,
-  transition: "opacity 0.3s, visibility 0.3s",
-  "&:hover": {
-    transform: "scale(1.08)",
-  },
-}));
 const MoreButton = styled(IconButton)(({ theme }) => ({
   marginLeft: 8,
   color: theme.palette.text.primary,
@@ -106,13 +97,6 @@ const MoreButton = styled(IconButton)(({ theme }) => ({
     backgroundColor: "#333",
   },
 }));
-
-const formatDuration = (ms: number) => {
-  const totalSeconds = Math.floor(ms / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-};
 
 const SongCard = ({ list }: SongCardProps) => {
   const tracksToShow = list.slice(0, 4);
@@ -177,9 +161,7 @@ const SongCard = ({ list }: SongCardProps) => {
               {track.artists?.[0]?.name}
             </Typography>
           </SongInfo>
-          <AddButton className="add-button">
-            <AddCircleOutlineRoundedIcon />
-          </AddButton>
+          <PlaylistMenu track={track} />
 
           <DurationText>
             {track.duration_ms ? formatDuration(track.duration_ms) : "Unknown"}

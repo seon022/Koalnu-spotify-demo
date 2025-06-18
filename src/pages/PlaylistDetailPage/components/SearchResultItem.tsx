@@ -17,7 +17,8 @@ const SearchResultItem = ({ item }: SearchResultItemProps) => {
   const albumName = item.album?.name;
 
   const handleAddItem = () => {
-    if (item.uri && playlistId) addItem({ uris: [item.uri], position: 0 });
+    if (item.uri && playlistId)
+      addItem({ playlist_id: playlistId, uris: [item.uri], position: 0 });
   };
 
   return (

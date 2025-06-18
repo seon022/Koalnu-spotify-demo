@@ -1,9 +1,9 @@
 import { Box, Typography, Avatar, styled } from "@mui/material";
 
-import PlayButton from "../../../../common/components/PlayButton";
-import { SimplifiedAlbum } from "../../../../models/albums";
-import { Artist } from "../../../../models/artist";
-import { Track } from "../../../../models/track";
+import PlayButton from "../../../common/components/PlayButton";
+import { SimplifiedAlbum } from "../../../models/albums";
+import { Artist } from "../../../models/artist";
+import { Track } from "../../../models/track";
 
 interface TopResultProps {
   data: Track | Artist | SimplifiedAlbum;

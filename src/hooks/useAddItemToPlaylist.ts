@@ -11,14 +11,15 @@ const useAddItemToPlaylist = () => {
 
   return useMutation({
     mutationFn: (params: AddItemToPlaylistRequest) => {
-      if (playlist_id) return AddItemToPlaylist(playlist_id, params);
-
-      return Promise.reject(new Error("playlist_id is undefined."));
+      return AddItemToPlaylist(params);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["current-user-playlist"] });
       queryClient.invalidateQueries({
-        queryKey: ["playlist-items", { playlist_id, limit: PAGE_LIMIT }],
+        queryKey: [
+          "playlist-items",
+          { playlist_id: playlist_id, limit: PAGE_LIMIT },
+        ],
       });
       queryClient.invalidateQueries({
         queryKey: ["playlist-detail", playlist_id],

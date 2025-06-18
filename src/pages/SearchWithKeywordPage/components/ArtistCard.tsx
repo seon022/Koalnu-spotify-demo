@@ -1,9 +1,9 @@
 import { Box, Typography, Avatar, styled } from "@mui/material";
 import React from "react";
 
-import PlayButton from "../../../../common/components/PlayButton";
-import { useResponsiveCount } from "../../../../hooks/useResponsiveCount";
-import { Artist } from "../../../../models/artist";
+import PlayButton from "../../../common/components/PlayButton";
+import { useResponsiveCount } from "../../../hooks/useResponsiveCount";
+import { Artist } from "../../../models/artist";
 
 interface ArtistCardProps {
   list: Artist[];

@@ -3,17 +3,17 @@ import { Box, Grid } from "@mui/system";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import ArtistCard from "./components/ArtistCard";
+import SongCard from "./components/SongCard";
+import TopResult from "./components/TopResult";
 import Card from "../../common/components/Card";
 import ErrorMessage from "../../common/components/ErrorMessage";
 import LoadingSpinner from "../../common/components/Loading/LoadingSpinner";
+import SearchField from "../../common/components/SearchField";
 import { useResponsiveCount } from "../../hooks/useResponsiveCount";
 import useSearchItemsByKeyword from "../../hooks/useSearchItemsByKeyword";
 import { SEARCH_TYPE } from "../../models/search";
 import { findTopResult } from "../../utils/findTopResult";
-import ArtistCard from "../SearchPage/components/SearchResultComponents/ArtistCard";
-import SearchField from "../SearchPage/components/SearchResultComponents/SearchField";
-import SongCard from "../SearchPage/components/SearchResultComponents/SongCard";
-import TopResult from "../SearchPage/components/SearchResultComponents/TopResult";
 
 const SearchWithKeywordContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
