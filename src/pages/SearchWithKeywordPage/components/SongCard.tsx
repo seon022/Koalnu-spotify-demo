@@ -1,14 +1,9 @@
-import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Box, Typography, IconButton, styled } from "@mui/material";
 import React from "react";
 
 import PlaylistMenu from "./PlaylistMenu";
-import ErrorMessage from "../../../common/components/ErrorMessage";
-import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
-import useAddItemToPlaylist from "../../../hooks/useAddItemToPlaylist";
-import useGetCurrentUserPlaylists from "../../../hooks/useGetCurrentUserPlaylists";
 import { Track } from "../../../models/track";
 import { formatDuration } from "../../../utils/formatters";
 

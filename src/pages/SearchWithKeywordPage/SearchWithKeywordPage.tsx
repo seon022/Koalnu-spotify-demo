@@ -1,5 +1,5 @@
 import { styled, Typography } from "@mui/material";
-import { Box, Grid } from "@mui/system";
+import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 

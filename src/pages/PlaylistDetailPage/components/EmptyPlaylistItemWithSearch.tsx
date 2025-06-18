@@ -45,19 +45,13 @@ const EmptyPlaylistItemWithSearch = () => {
   const { ref, inView } = useInView();
   const [keyword, setKeyword] = useState<string>("");
 
-  const {
-    data,
-    error,
-    isLoading,
-    hasNextPage,
-    isFetchingNextPage,
-    fetchNextPage,
-  } = useSearchItemsByKeyword({
-    q: keyword,
-    type: [SEARCH_TYPE.Track],
-    limit: 10,
-    offset: 0,
-  });
+  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
+    useSearchItemsByKeyword({
+      q: keyword,
+      type: [SEARCH_TYPE.Track],
+      limit: 10,
+      offset: 0,
+    });
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {

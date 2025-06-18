@@ -1,22 +1,23 @@
 import "./App.css";
 
 import React, { Suspense, useEffect } from "react";
-import { Route,Routes } from "react-router";
+import { Route, Routes } from "react-router";
 
 import LoadingSpinner from "./common/components/Loading/LoadingSpinner";
+import SnackbarProvider from "./common/components/SnackbarProvider";
 import useExchangeToken from "./hooks/useExchageToken";
 
 const AppLayout = React.lazy(() => import("./layout/AppLayout"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
 const SearchPage = React.lazy(() => import("./pages/SearchPage/SearchPage"));
 const SearchWithKeywordPage = React.lazy(
-	() => import("./pages/SearchWithKeywordPage/SearchWithKeywordPage")
+  () => import("./pages/SearchWithKeywordPage/SearchWithKeywordPage"),
 );
 const PlaylistDetailPage = React.lazy(
-	() => import("./pages/PlaylistDetailPage/PlaylistDetailPage")
+  () => import("./pages/PlaylistDetailPage/PlaylistDetailPage"),
 );
 const PlaylistPage = React.lazy(
-	() => import("./pages/PlaylistPage/PlaylistPage")
+  () => import("./pages/PlaylistPage/PlaylistPage"),
 );
 
 // 필요한 페이지 생각해보기!
@@ -36,30 +37,31 @@ const PlaylistPage = React.lazy(
 // Suspense 아래에 있는 라우터들에 대해서 비동기 상태 관리 - 로딩 보여줌
 
 function App() {
-	const urlParams = new URLSearchParams(window.location.search);
-	let code = urlParams.get("code");
-	const codeVerifier = localStorage.getItem("code_verifier");
+  const urlParams = new URLSearchParams(window.location.search);
+  let code = urlParams.get("code");
+  const codeVerifier = localStorage.getItem("code_verifier");
 
-	const { mutate: exchangeToken } = useExchangeToken();
+  const { mutate: exchangeToken } = useExchangeToken();
 
-	useEffect(() => {
-		if (code && codeVerifier) {
-			exchangeToken({ code, codeVerifier });
-		}
-	}, [code, codeVerifier, exchangeToken]);
-	return (
-		<Suspense fallback={<LoadingSpinner />}>
-			<Routes>
-				<Route path="/" element={<AppLayout />}>
-					<Route index element={<HomePage />} />
-					<Route path="search" element={<SearchPage />} />
-					<Route path="search/:keyword" element={<SearchWithKeywordPage />} />
-					<Route path="playlist/:id" element={<PlaylistDetailPage />} />
-					<Route path="playlist" element={<PlaylistPage />} />
-				</Route>
-			</Routes>
-		</Suspense>
-	);
+  useEffect(() => {
+    if (code && codeVerifier) {
+      exchangeToken({ code, codeVerifier });
+    }
+  }, [code, codeVerifier, exchangeToken]);
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="search/:keyword" element={<SearchWithKeywordPage />} />
+          <Route path="playlist/:id" element={<PlaylistDetailPage />} />
+          <Route path="playlist" element={<PlaylistPage />} />
+        </Route>
+      </Routes>
+      <SnackbarProvider />
+    </Suspense>
+  );
 }
 
 export default App;

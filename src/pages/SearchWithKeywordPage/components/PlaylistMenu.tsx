@@ -5,8 +5,6 @@ import {
   IconButton,
   ListItemText,
   styled,
-  Snackbar,
-  Alert,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -16,6 +14,7 @@ import useAddItemToPlaylist from "../../../hooks/useAddItemToPlaylist";
 import useGetCurrentUserPlaylists from "../../../hooks/useGetCurrentUserPlaylists";
 import useGetCurrentUserProfile from "../../../hooks/useGetCurrentUserProfile";
 import { Track } from "../../../models/track";
+import { useSnackbarStore } from "../../../store/snackbarStore";
 
 interface PlaylistMenuProps {
   track: Track;
@@ -41,8 +40,10 @@ export default function PlaylistMenu({ track }: PlaylistMenuProps) {
   const { mutate: addItem } = useAddItemToPlaylist();
   const { data: user } = useGetCurrentUserProfile();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
+
+  const { show } = useSnackbarStore();
+
+  const { data, hasNextPage, isFetchingNextPage, fetchNextPage } =
     useGetCurrentUserPlaylists({
       limit: 20,
       offset: 0,
@@ -59,7 +60,7 @@ export default function PlaylistMenu({ track }: PlaylistMenuProps) {
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     if (!user) {
-      return alert("로그인해주세요.");
+      return show("로그인이 필요합니다.", "warning");
     }
     setAnchorEl(event.currentTarget);
   };
@@ -74,19 +75,11 @@ export default function PlaylistMenu({ track }: PlaylistMenuProps) {
         { playlist_id, uris: [track.uri], position: 0 },
         {
           onSuccess: () => {
-            setSnackbarOpen(true);
+            show(`Added to playlist!`, "success");
           },
         },
       );
     handleClose();
-  };
-
-  const handleSnackbarClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string,
-  ) => {
-    if (reason === "clickaway") return;
-    setSnackbarOpen(false);
   };
 
   return (
@@ -146,20 +139,6 @@ export default function PlaylistMenu({ track }: PlaylistMenuProps) {
         )}
         <div ref={ref}>{hasNextPage && <LoadingSpinner />}</div>
       </Menu>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
-          onClose={handleSnackbarClose}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          {`Added "${track.name}" to your playlist.`}
-        </Alert>
-      </Snackbar>
     </>
   );
 }

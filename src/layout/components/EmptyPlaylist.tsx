@@ -1,6 +1,8 @@
 import { Button, Card, styled, Typography } from "@mui/material";
 import React from "react";
 
+import { useSnackbarStore } from "../../store/snackbarStore";
+
 const EmptyPlaylistCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   padding: "20px",
@@ -13,13 +15,22 @@ const AddPlaylistButton = styled(Button)({
 });
 
 const EmptyPlaylist = () => {
+  const { show } = useSnackbarStore();
+
+  const handleClick = () => {
+    return show("로그인이 필요합니다.", "warning");
+  };
   return (
     <EmptyPlaylistCard>
       <Typography variant="h2" fontWeight={700}>
         Create your first playlist
       </Typography>
       <Typography variant="body1">It's easy, we'll help you</Typography>
-      <AddPlaylistButton variant="contained" color="secondary">
+      <AddPlaylistButton
+        variant="contained"
+        color="secondary"
+        onClick={handleClick}
+      >
         Create playlist
       </AddPlaylistButton>
     </EmptyPlaylistCard>
