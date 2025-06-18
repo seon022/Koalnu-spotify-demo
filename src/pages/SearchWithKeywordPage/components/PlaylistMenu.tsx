@@ -59,7 +59,7 @@ export default function PlaylistMenu({ track }: PlaylistMenuProps) {
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     if (!user) {
-      alert("로그인해주세요.");
+      return alert("로그인해주세요.");
     }
     setAnchorEl(event.currentTarget);
   };

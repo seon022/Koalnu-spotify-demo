@@ -4,11 +4,9 @@ import React from "react";
 import ProfileToggle from "./ProfileToggle";
 import LoginButton from "../../../common/components/LoginButton";
 import useGetCurrentUserProfile from "../../../hooks/useGetCurrentUserProfile";
-import useLogout from "../../../hooks/useLogout";
 
 const Navbar = () => {
   const { data: userProfile } = useGetCurrentUserProfile();
-  const logout = useLogout();
 
   return (
     <Box
@@ -28,7 +26,6 @@ const Navbar = () => {
         <ProfileToggle
           imageUrl={userProfile.images?.[0]?.url}
           displayName={userProfile.display_name}
-          onLogout={logout}
         />
       )}
     </Box>
