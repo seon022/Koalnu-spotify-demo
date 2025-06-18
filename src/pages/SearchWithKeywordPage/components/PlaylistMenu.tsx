@@ -11,10 +11,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-import ErrorMessage from "../../../common/components/ErrorMessage";
 import LoadingSpinner from "../../../common/components/Loading/LoadingSpinner";
 import useAddItemToPlaylist from "../../../hooks/useAddItemToPlaylist";
 import useGetCurrentUserPlaylists from "../../../hooks/useGetCurrentUserPlaylists";
+import useGetCurrentUserProfile from "../../../hooks/useGetCurrentUserProfile";
 import { Track } from "../../../models/track";
 
 interface PlaylistMenuProps {
@@ -38,31 +38,29 @@ const AddButton = styled(IconButton)(({ theme }) => ({
 
 export default function PlaylistMenu({ track }: PlaylistMenuProps) {
   const { ref, inView } = useInView();
+  const { mutate: addItem } = useAddItemToPlaylist();
+  const { data: user } = useGetCurrentUserProfile();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const {
-    data,
-    isLoading,
-    error,
-    hasNextPage,
-    isFetchingNextPage,
-    fetchNextPage,
-  } = useGetCurrentUserPlaylists({
-    limit: 20,
-    offset: 0,
-  });
-  const { mutate: addItem } = useAddItemToPlaylist();
+  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
+    useGetCurrentUserPlaylists({
+      limit: 20,
+      offset: 0,
+    });
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage, user]);
 
   const open = Boolean(anchorEl);
   const playlistsData = data?.pages.flatMap((page) => page.items) || [];
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    if (!user) {
+      alert("로그인해주세요.");
+    }
     setAnchorEl(event.currentTarget);
   };
 
@@ -91,9 +89,6 @@ export default function PlaylistMenu({ track }: PlaylistMenuProps) {
     setSnackbarOpen(false);
   };
 
-  if (isLoading) return <LoadingSpinner />;
-  if (error) return <ErrorMessage errorMessage={error.message} />;
-
   return (
     <>
       <AddButton onClick={handleOpen} className="add-button">
@@ -103,10 +98,38 @@ export default function PlaylistMenu({ track }: PlaylistMenuProps) {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        sx={{
-          maxHeight: 300,
-          width: "20vw",
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
         }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        MenuListProps={{
+          sx: {
+            maxHeight: 300,
+            overflowY: "auto",
+            "&::-webkit-scrollbar": {
+              width: "8px",
+            },
+            "&::-webkit-scrollbar-track": {
+              background: "transparent",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#555",
+              borderRadius: "4px",
+              border: "2px solid transparent",
+              backgroundClip: "content-box",
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+              backgroundColor: "#888",
+            },
+            scrollbarWidth: "thin",
+            scrollbarColor: "#555 transparent",
+          },
+        }}
+        sx={{ width: "24vw", minWidth: "240px", padding: 2 }}
       >
         {playlistsData.map(
           (playlist) =>
