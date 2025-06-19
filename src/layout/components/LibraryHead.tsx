@@ -34,7 +34,11 @@ const LibraryHead = () => {
           Your Library
         </Typography>
       </Box>
-      <Button onClick={handleCreatePlaylist}>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={handleCreatePlaylist}
+      >
         <AddIcon />
       </Button>
     </Head>

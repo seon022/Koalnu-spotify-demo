@@ -1,64 +1,78 @@
 import { createTheme } from "@mui/material";
+import { brown, pink } from "@mui/material/colors";
+
+const PINK = "#D9B4B7";
+const PINK_LIGHT = "#D9B4B7";
+const BROWN = "#7C5A43";
+const BROWN_LIGHT = "#735E53";
+const ROSE_BROWN = "#aa7f7d";
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#1ed760",
+      main: BROWN,
+      light: BROWN_LIGHT,
     },
     secondary: {
-      main: "#ffffff",
+      main: PINK,
+      light: PINK_LIGHT,
     },
     background: {
-      default: "#000",
-      paper: "#121212",
+      default: PINK,
+      paper: BROWN_LIGHT,
     },
     text: {
-      primary: "#fff",
-      secondary: "#b3b3b3",
+      primary: PINK,
+      secondary: BROWN_LIGHT,
     },
     action: {
-      hover: "#282828",
-      active: "#333",
+      hover: ROSE_BROWN,
+      active: BROWN,
     },
   },
   typography: {
-    fontFamily: "Roboto, Arial, sans-serif",
+    fontFamily: '"Pretendard", san-serif',
     h1: {
       fontWeight: 700,
-      fontSize: "24px",
+      fontSize: "20px",
     },
     h2: {
-      fontSize: "1rem",
+      fontSize: "0.9rem",
     },
     body1: {
-      fontSize: "14px",
+      fontSize: "12px",
     },
     subtitle1: {
-      fontSize: "0.6875rem",
+      fontSize: "0.6rem",
     },
   },
   components: {
     MuiButton: {
+      defaultProps: {
+        variant: "contained",
+        color: "primary",
+      },
       styleOverrides: {
         root: {
-          borderRadius: "30px",
+          borderRadius: "16px",
           textTransform: "none",
         },
         containedSecondary: {
-          backgroundColor: "#ffffff",
-          color: "#000000",
+          backgroundColor: ROSE_BROWN,
+          color: "#ddd",
           "&:hover": {
-            backgroundColor: "#e0e0e0",
+            backgroundColor: ROSE_BROWN,
+            color: PINK,
           },
         },
         textPrimary: {
           backgroundColor: "transparent",
           padding: "0",
           borderRadius: "50px",
-          color: "#fff",
+          color: BROWN,
           "&:hover": {
-            backgroundColor: "rgba(255, 255,255, 0.3)",
+            backgroundColor: "rgba(0, 0, 0, 0.04)",
           },
         },
         sizeLarge: {

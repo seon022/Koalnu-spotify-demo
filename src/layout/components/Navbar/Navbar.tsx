@@ -17,7 +17,12 @@ const Navbar = () => {
       padding="10px"
       paddingLeft={"14px"}
     >
-      <Typography variant="subtitle1" fontSize={20} fontWeight="bold">
+      <Typography
+        color="textSecondary"
+        variant="subtitle1"
+        fontSize={20}
+        fontWeight="bold"
+      >
         👩‍💻 Music
       </Typography>
       {!userProfile ? (

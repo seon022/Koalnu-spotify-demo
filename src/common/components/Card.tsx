@@ -4,6 +4,7 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  useTheme,
 } from "@mui/material";
 import React from "react";
 
@@ -16,6 +17,8 @@ interface CardProps {
 }
 
 const Card = ({ image, name, artistName }: CardProps) => {
+  const theme = useTheme();
+
   return (
     <MuiCard
       sx={{
@@ -24,10 +27,14 @@ const Card = ({ image, name, artistName }: CardProps) => {
         overflow: "hidden",
         borderRadius: 2,
         boxShadow: 3,
-        backgroundColor: "background.paper",
+        color: theme.palette.primary.main,
+        backgroundColor: theme.palette.background.default,
+        padding: 1,
+
         transition: "transform 0.2s ease-in-out",
         "&:hover": {
-          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          backgroundColor: theme.palette.action.hover,
+          color: theme.palette.text.primary,
           "& .hover-button": {
             transform: "translateY(0%)",
             opacity: 1,
@@ -64,7 +71,7 @@ const Card = ({ image, name, artistName }: CardProps) => {
         <Typography variant="subtitle2" fontWeight="bold" noWrap>
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary" noWrap>
+        <Typography variant="body2" noWrap>
           {artistName ?? "Unknown Artist"}
         </Typography>
       </CardContent>
