@@ -33,7 +33,8 @@ const SearchResultItem = ({ item }: SearchResultItemProps) => {
       sx={{
         cursor: "pointer",
         "&:hover": {
-          backgroundColor: "#353b35",
+          backgroundColor: "background.default",
+          color: "primary.main",
         },
       }}
     >
@@ -63,9 +64,7 @@ const SearchResultItem = ({ item }: SearchResultItemProps) => {
           >
             {item.name}
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary">
-            {artistName}
-          </Typography>
+          <Typography variant="subtitle1">{artistName}</Typography>
         </Box>
       </Box>
 
@@ -79,7 +78,12 @@ const SearchResultItem = ({ item }: SearchResultItemProps) => {
       </Box>
 
       <Box>
-        <Button variant="outlined" size="small" onClick={handleAddItem}>
+        <Button
+          variant="contained"
+          size="small"
+          color="secondary"
+          onClick={handleAddItem}
+        >
           Add
         </Button>
       </Box>
