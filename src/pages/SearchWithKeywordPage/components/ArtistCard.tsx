@@ -42,6 +42,7 @@ const ArtistImage = styled(Avatar)(({ theme }) => ({
   minHeight: 120,
   maxWidth: 160,
   maxHeight: 160,
+  color: theme.palette.primary.main,
   marginBottom: theme.spacing(2),
 }));
 

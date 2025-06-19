@@ -33,11 +33,11 @@ const PlaylistItem = ({
         cursor: "pointer",
         borderRadius: 1,
         transition: "background-color 0.2s",
-        backgroundColor: selected ? "rgba(255,255,255,0.12)" : "transparent",
+        backgroundColor: selected ? "rgba(148, 49, 115,0.16)" : "transparent",
         "&:hover": {
           backgroundColor: selected
-            ? "rgba(255,255,255,0.12)"
-            : "rgba(255,255,255,0.08)",
+            ? "rgba(148, 49, 115, 0.16)"
+            : "rgba(148, 49, 115, 0.12)",
         },
       }}
     >
@@ -63,11 +63,11 @@ const PlaylistItem = ({
             width: 50,
             height: 50,
             borderRadius: 1,
-            backgroundColor: "#222",
+            backgroundColor: "primary.main",
             flexShrink: 0,
           }}
         >
-          <LibraryMusicIcon sx={{ color: "#aaa", fontSize: 32 }} />
+          <LibraryMusicIcon sx={{ fontSize: 32 }} />
         </Box>
       )}
       <Box overflow="hidden">
@@ -75,7 +75,6 @@ const PlaylistItem = ({
           variant="body1"
           sx={{
             fontWeight: 500,
-            color: "white",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
             overflow: "hidden",
@@ -86,7 +85,6 @@ const PlaylistItem = ({
         <Typography
           variant="body2"
           sx={{
-            color: "gray",
             fontSize: "0.75rem",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",

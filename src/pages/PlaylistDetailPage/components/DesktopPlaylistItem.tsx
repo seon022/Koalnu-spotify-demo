@@ -12,28 +12,31 @@ interface DesktopPlaylistItemProps {
 
 const CustomBodyCell = styled(TableCell)(({ theme }) => ({
   borderBottom: "none",
+  color: theme.palette.primary.main,
 }));
-const TitleCell = styled(TableCell)(() => ({
+const TitleCell = styled(TableCell)(({ theme }) => ({
   borderBottom: "none",
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
   maxWidth: 140,
+  color: theme.palette.primary.main,
 }));
-const AlbumCell = styled(TableCell)(() => ({
+const AlbumCell = styled(TableCell)(({ theme }) => ({
   borderBottom: "none",
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
   maxWidth: 200,
+  color: theme.palette.primary.main,
 }));
 
 const CustomTableRow = styled(TableRow)(({ theme }) => ({
   transition: "background 0.2s, box-shadow 0.2s",
   "&:hover": {
-    backgroundColor: "rgba(255,255,255,0.06)",
+    backgroundColor: theme.palette.background.default,
     boxShadow:
-      "0 4px 24px 0 rgba(14, 38, 22, 0.45), 0 1.5px 3px 0 rgba(46, 119, 64, 0.08)",
+      "0 4px 24px 0 rgba(104, 86, 64, 0.45), 0 1.5px 3px 0 rgba(152, 88, 129, 0.08)",
   },
 }));
 

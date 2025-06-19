@@ -1,12 +1,10 @@
 import { Box, Typography, Avatar, styled } from "@mui/material";
 
 import PlayButton from "../../../common/components/PlayButton";
-import { SimplifiedAlbum } from "../../../models/albums";
 import { Artist } from "../../../models/artist";
-import { Track } from "../../../models/track";
 
 interface TopResultProps {
-  data: Track | Artist | SimplifiedAlbum;
+  data: Artist;
 }
 
 const TopResultContainer = styled(Box)(({ theme }) => ({
@@ -18,13 +16,15 @@ const TopResultContainer = styled(Box)(({ theme }) => ({
   alignItems: "center",
   padding: theme.spacing(3),
   borderRadius: "16px",
-  backgroundColor: "#121212",
+  color: theme.palette.primary.main,
+  backgroundColor: theme.palette.background.default,
   transition: "transform 0.3s",
   cursor: "pointer",
   boxShadow: "0 4px 24px 0 rgba(0,0,0,0.15)",
   "&:hover": {
     transform: "scale(1.02)",
-    backgroundColor: "#1a1a1a",
+    backgroundColor: theme.palette.action.hover,
+    color: theme.palette.secondary.main,
   },
   "&:hover .hover-button": {
     opacity: 1,
@@ -41,54 +41,23 @@ const TopResultImage = styled(Avatar)(({ theme }) => ({
   fontSize: theme.spacing(12),
 }));
 
-const getType = (data: Track | Artist | SimplifiedAlbum) => {
-  if ("artists" in data && "album" in data) return "track";
-  if ("type" in data && data.type === "album") return "album";
-  return "artist";
-};
-
 const TopResult = ({ data }: TopResultProps) => {
-  const type = getType(data);
-
-  let imageUrl = "";
-  let title = "";
-  let subtitle = "";
-  if (type === "artist") {
-    const artist = data as Artist;
-    imageUrl = artist.images?.[0]?.url || "";
-    title = artist.name || "";
-    subtitle = "아티스트";
-  } else if (type === "track") {
-    const track = data as Track;
-    imageUrl = track.album?.images?.[0]?.url || "";
-    title = track.name || "";
-    subtitle = track.artists?.[0].name || "";
-  } else if (type === "album") {
-    const album = data as SimplifiedAlbum;
-    imageUrl = album.images?.[0]?.url || "";
-    title = album.name;
-    subtitle = album.artists?.map((a) => a.name).join(", ");
-  }
+  const imageUrl = data.images?.[0]?.url || "";
+  const title = data.name;
+  const subtitle = data.name;
 
   return (
     <TopResultContainer>
-      <TopResultImage
-        alt={title}
-        src={imageUrl}
-        variant={type === "artist" ? "circular" : "rounded"}
-      >
-        {!imageUrl && title[0]}
+      <TopResultImage alt={title} src={imageUrl} variant="circular">
+        {!imageUrl && title}
       </TopResultImage>
       <Typography
         variant="h6"
-        sx={{ color: "#fff", fontWeight: 700, textAlign: "center", mb: 1 }}
+        sx={{ fontWeight: 700, textAlign: "center", mb: 1 }}
       >
         {title}
       </Typography>
-      <Typography
-        variant="subtitle2"
-        sx={{ color: "#b3b3b3", textAlign: "center", mb: 2 }}
-      >
+      <Typography variant="subtitle2" sx={{ textAlign: "center", mb: 2 }}>
         {subtitle}
       </Typography>
       <Box

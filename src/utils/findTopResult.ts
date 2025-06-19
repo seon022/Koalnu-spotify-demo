@@ -9,7 +9,7 @@ export const findTopResult = (
   const artist = artists?.items?.find((item) =>
     item.name?.toLowerCase().includes(lowerKeyword),
   );
-  if (artist) return artist;
+  if (artist?.images?.[0].url.length) return artist;
   const track = tracks?.items?.find((item) =>
     item.name?.toLowerCase().includes(lowerKeyword),
   );

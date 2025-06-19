@@ -20,7 +20,7 @@ const LoginRequiredNotice = () => (
     <EmojiEmotionsIcon
       sx={{
         fontSize: 60,
-        color: "#3ebc6a",
+        color: "secondary.main",
         mb: 2,
       }}
     />

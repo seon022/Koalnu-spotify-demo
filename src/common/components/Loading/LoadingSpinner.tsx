@@ -1,6 +1,6 @@
 import { Box, useTheme } from "@mui/material";
 import React from "react";
-import { DotLoader } from "react-spinners";
+import { PacmanLoader } from "react-spinners";
 
 const LoadingSpinner = () => {
   const theme = useTheme();
@@ -17,7 +17,7 @@ const LoadingSpinner = () => {
           color: "secondary.main",
         }}
       >
-        <DotLoader color="currentColor" size={35} speedMultiplier={0.8} />
+        <PacmanLoader color="currentColor" size={16} speedMultiplier={0.8} />
       </Box>
     </Box>
   );

@@ -4,9 +4,10 @@ import React from "react";
 import { useSnackbarStore } from "../../store/snackbarStore";
 
 const EmptyPlaylistCard = styled(Card)(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.background.default,
   padding: "20px",
   borderRadius: "8px",
+  color: theme.palette.text.secondary,
 }));
 
 const AddPlaylistButton = styled(Button)({

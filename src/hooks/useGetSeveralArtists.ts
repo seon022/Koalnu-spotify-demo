@@ -4,10 +4,11 @@ import useClientCredentialToken from "./useClientCredentialToken";
 import { getSeveralArtists } from "../apis/artistsApi";
 
 const ARTIST_IDS = [
-  "2CIMQHirSU0MQqyYHq0eOx", // Deadmau5
-  "57dN52uHvrHOxijzpIgu3E", // Daft Punk
-  "1vCWHaC5f2uS3yhpwWbIA6", // Avicii
-  "1vCWHaC5f2uS3yhpwWbIA6", // Avicii
+  "250b0Wlc5Vk0CoUsaCY84M",
+  "3DiDSECUqqY1AuBP8qtaIa",
+  "7f4ignuCJhLXfZ9giKT7rH",
+  "4FqmqIspLaUGtxAFFLsZxc",
+  "1uNFoZAHBGtllmzznpCI3s",
 ];
 
 const useGetSeveralArtists = () => {

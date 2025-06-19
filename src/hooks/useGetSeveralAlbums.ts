@@ -4,9 +4,9 @@ import useClientCredentialToken from "./useClientCredentialToken";
 import { getSeveralAlbums } from "../apis/albumApi";
 
 const ALBUM_IDS = [
-  "382ObEPsp2rxGrnsizN5TX", // Example album ID
-  "1A2GTWGtFfWp7KSQTwWOyo", // Example album ID
-  "2noRn2Aes5aoNVsU6iWThc", // Example album ID
+  "4N1fROq2oeyLGAlQ1C1j18",
+  "6P0N7vLC7VYmt7ZzH6P8MD",
+  "7kEtCtHsaRjz0fIXbmUFNt",
 ];
 
 const useGetSeveralAlbums = (market?: string) => {

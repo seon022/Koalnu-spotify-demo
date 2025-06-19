@@ -78,7 +78,13 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
     color: theme.palette.action.hover,
   },
   "&.active": {
-    color: theme.palette.text.primary,
+    color: theme.palette.action.active,
+
+    "& .nav-text": {
+      fontWeight: 900,
+      textShadow: "2px 2px 4px rgba(201, 48, 140, 0.2)",
+      transform: "scale(1.05)",
+    },
   },
 }));
 
@@ -92,13 +98,13 @@ const AppLayout = () => {
             <NavList>
               <StyledNavLink to="/">
                 <HomeIcon />
-                <Typography variant="h2" fontWeight={700}>
+                <Typography variant="h2" className="nav-text" fontWeight={600}>
                   Home
                 </Typography>
               </StyledNavLink>
               <StyledNavLink to="/search">
                 <SearchIcon />
-                <Typography variant="h2" fontWeight={700}>
+                <Typography variant="h2" className="nav-text" fontWeight={600}>
                   Search
                 </Typography>
               </StyledNavLink>

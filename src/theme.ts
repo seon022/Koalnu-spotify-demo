@@ -1,8 +1,9 @@
 import { createTheme } from "@mui/material";
+import { brown } from "@mui/material/colors";
 
 const PINK = "#D9B4B7";
 const PINK_LIGHT = "#D9B4B7";
-const BROWN = "#7C5A43";
+const BROWN = "#4B2E1D";
 const BROWN_LIGHT = "#735E53";
 const ROSE_BROWN = "#aa7f7d";
 
@@ -17,6 +18,7 @@ const theme = createTheme({
       main: PINK,
       light: PINK_LIGHT,
     },
+
     background: {
       default: PINK,
       paper: BROWN_LIGHT,
@@ -27,7 +29,7 @@ const theme = createTheme({
     },
     action: {
       hover: ROSE_BROWN,
-      active: BROWN,
+      active: PINK,
     },
   },
   typography: {
@@ -37,13 +39,13 @@ const theme = createTheme({
       fontSize: "24px",
     },
     h2: {
-      fontSize: "0.9rem",
+      fontSize: "1.1rem",
     },
     body1: {
-      fontSize: "12px",
+      fontSize: "14px",
     },
     subtitle1: {
-      fontSize: "0.6rem",
+      fontSize: "0.6875rem",
     },
   },
   components: {

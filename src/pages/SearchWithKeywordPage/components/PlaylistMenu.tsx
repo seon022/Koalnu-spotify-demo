@@ -25,13 +25,14 @@ const AddButton = styled(IconButton)(({ theme }) => ({
   opacity: 0,
   visibility: "hidden",
   pointerEvents: "none",
-  color: "#b3b3b3",
-  backgroundColor: "#2a2a2a",
   width: 32,
   height: 32,
   transition: "opacity 0.3s, visibility 0.3s",
+  color: theme.palette.secondary.main,
   "&:hover": {
     transform: "scale(1.08)",
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.secondary.light,
   },
 }));
 

@@ -75,6 +75,7 @@ const SearchWithKeywordPage = () => {
     limit: 10,
     offset: 0,
   });
+  console.log(data);
 
   const handleSearch = (e?: React.SyntheticEvent) => {
     if (e) e.preventDefault();
@@ -84,7 +85,7 @@ const SearchWithKeywordPage = () => {
 
   let topResultData = null;
   if (data?.pages[0]) {
-    topResultData = findTopResult(data.pages[0], keyword);
+    topResultData = data?.pages[0]?.artists?.items?.[0] || null;
   }
   const count = useResponsiveCount({ xs: 2, sm: 2, md: 3, lg: 5, xl: 6 });
   const albumToShow = data?.pages[0]?.albums?.items.slice(0, count);
@@ -100,14 +101,14 @@ const SearchWithKeywordPage = () => {
       {error && <ErrorMessage errorMessage={error.message} />}
       {isLoading && <LoadingSpinner />}
       <TopResultAndSongsContainer>
-        <TopResultBox mb={2}>
-          <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
+        <TopResultBox>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             상위 검색 결과
           </Typography>
           {topResultData && <TopResult data={topResultData} />}
         </TopResultBox>
         <SongsBox>
-          <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             노래
           </Typography>
           {data?.pages.map((page, index) => (
@@ -116,7 +117,7 @@ const SearchWithKeywordPage = () => {
         </SongsBox>
       </TopResultAndSongsContainer>
       <Box my={4}>
-        <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
           아티스트
         </Typography>
         {data?.pages.map((page, index) => (
@@ -124,7 +125,7 @@ const SearchWithKeywordPage = () => {
         ))}
       </Box>
       <AlbumBox>
-        <Typography variant="h6" sx={{ color: "#fff", mb: 2 }}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
           앨범
         </Typography>
         <Box

@@ -15,9 +15,8 @@ const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "start",
   gap: theme.spacing(2),
   padding: "24px 20px",
-  background: "rgba(255, 255, 255, 0.03)",
+  background: "rgba(255, 255, 255, 0.04)",
   borderRadius: theme.spacing(2),
-  color: "#fff",
 }));
 
 const PlaylistImage = styled(Box)(({ theme }) => ({
@@ -27,7 +26,7 @@ const PlaylistImage = styled(Box)(({ theme }) => ({
   marginRight: 12,
   overflow: "hidden",
   boxShadow: theme.shadows[2],
-  backgroundColor: "#333",
+  backgroundColor: theme.palette.primary.main,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

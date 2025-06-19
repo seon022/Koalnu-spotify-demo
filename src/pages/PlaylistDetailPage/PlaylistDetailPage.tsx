@@ -32,14 +32,15 @@ const PlaylistContainer = styled("div")(({ theme }) => ({
   scrollbarWidth: "none",
   msOverflowStyle: "none",
   borderRadius: "10px",
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.action.hover,
   [theme.breakpoints.down("sm")]: {
-    maxHeight: "calc(100vh - 65px - 119px)",
+    maxHeight: "calc(100vh -280px)",
   },
 }));
 
-const CustomTableCell = styled(TableCell)(() => ({
-  backgroundColor: "rgba(24, 24, 27, 0.9)",
+const CustomTableCell = styled(TableCell)(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  color: theme.palette.primary.main,
   borderBottom: "none",
   fontWeight: 600,
 }));
@@ -94,7 +95,11 @@ const PlaylistDetailPage = () => {
         <EmptyPlaylistItemWithSearch />
       ) : (
         <PlaylistContainer>
-          <Table stickyHeader aria-label="sticky table">
+          <Table
+            stickyHeader
+            aria-label="sticky table"
+            sx={{ color: "primary.main" }}
+          >
             <TableHead>
               <TableRow>
                 <CustomTableCell>#</CustomTableCell>

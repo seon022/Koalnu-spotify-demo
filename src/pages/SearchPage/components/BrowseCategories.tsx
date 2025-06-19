@@ -35,7 +35,6 @@ const BrowseCategories = () => {
     isError,
     error,
   } = useGetBrowseCategories({ locale: "ko_KR", limit: 10 });
-
   const { ref, inView } = useInView();
 
   useEffect(() => {

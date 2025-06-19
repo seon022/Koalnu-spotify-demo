@@ -16,11 +16,13 @@ const CardWrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
   padding: theme.spacing(1.5),
   borderRadius: "8px",
-  backgroundColor: "#181818",
+  color: theme.palette.primary.main,
+  backgroundColor: theme.palette.background.default,
   position: "relative",
   transition: "background-color 0.3s",
   "&:hover": {
-    backgroundColor: "#282828",
+    backgroundColor: theme.palette.action.hover,
+    color: theme.palette.secondary.main,
   },
   "&:hover .add-button": {
     opacity: 1,
@@ -78,18 +80,17 @@ const SongInfo = styled(Box)(({ theme }) => ({
 }));
 
 const DurationText = styled(Typography)({
-  color: "#b3b3b3",
   fontSize: "0.875rem",
   whiteSpace: "nowrap",
 });
 
 const MoreButton = styled(IconButton)(({ theme }) => ({
   marginLeft: 8,
-  color: theme.palette.text.primary,
-  backgroundColor: "transparent",
+  color: theme.palette.primary.main,
   transition: "background-color 0.2s",
   "&:hover": {
-    backgroundColor: "#333",
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.secondary.main,
   },
 }));
 
@@ -101,7 +102,7 @@ const SongCard = ({ list }: SongCardProps) => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={1}>
+    <Box display="flex" flexDirection="column" gap={2}>
       {tracksToShow.map((track) => (
         <CardWrapper key={track.id}>
           <AlbumImageBox
@@ -127,7 +128,6 @@ const SongCard = ({ list }: SongCardProps) => {
             <Typography
               variant="subtitle2"
               sx={(theme) => ({
-                color: "#fff",
                 fontWeight: 500,
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -147,7 +147,6 @@ const SongCard = ({ list }: SongCardProps) => {
             <Typography
               variant="body1"
               sx={{
-                color: "#b3b3b3",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
