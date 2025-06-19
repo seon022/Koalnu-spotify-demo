@@ -1,17 +1,26 @@
-import { BeatLoader } from "react-spinners";
+import { Box, useTheme } from "@mui/material";
+import React from "react";
+import { DotLoader } from "react-spinners";
 
 const LoadingSpinner = () => {
+  const theme = useTheme();
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "30px",
-      }}
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="60px"
     >
-      <BeatLoader color="#1DB954" size={12} margin={2} />
-    </div>
+      <Box
+        sx={{
+          color: "secondary.main",
+        }}
+      >
+        <DotLoader color="currentColor" size={35} speedMultiplier={0.8} />
+      </Box>
+    </Box>
   );
 };
+
 export default LoadingSpinner;

@@ -18,3 +18,7 @@ export interface Artist extends SimplifiedArtist {
   images?: Image[];
   popularity?: number;
 }
+
+export interface SeveralArtistsResponse {
+  artists: Artist[];
+}

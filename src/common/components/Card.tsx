@@ -23,18 +23,20 @@ const Card = ({ image, name, artistName }: CardProps) => {
     <MuiCard
       sx={{
         position: "relative",
-        maxWidth: 280,
+        width: "100%",
         overflow: "hidden",
         borderRadius: 2,
         boxShadow: 3,
         color: theme.palette.primary.main,
         backgroundColor: theme.palette.background.default,
         padding: 1,
+        height: "100%",
 
         transition: "transform 0.2s ease-in-out",
         "&:hover": {
           backgroundColor: theme.palette.action.hover,
           color: theme.palette.text.primary,
+          transform: "scale(1.01)",
           "& .hover-button": {
             transform: "translateY(0%)",
             opacity: 1,
@@ -48,15 +50,19 @@ const Card = ({ image, name, artistName }: CardProps) => {
           component="img"
           image={image}
           alt={name}
-          sx={{ objectFit: "cover", maxHeight: 160 }}
+          sx={{
+            width: "100%",
+            aspectRatio: "1/1",
+            objectFit: "cover",
+            borderRadius: 1,
+          }}
         />
-
         <Box
           className="hover-button"
           sx={{
             position: "absolute",
-            right: 10,
-            bottom: 12,
+            right: { xs: 8, sm: 10 },
+            bottom: { xs: 8, sm: 12 },
             transform: "translateY(10%)",
             opacity: 0,
             visibility: "hidden",
@@ -67,11 +73,35 @@ const Card = ({ image, name, artistName }: CardProps) => {
           <PlayButton />
         </Box>
       </Box>
-      <CardContent sx={{ p: 1, pt: 2, minHeight: 30, maxHeight: 70 }}>
-        <Typography variant="subtitle2" fontWeight="bold" noWrap>
+      <CardContent
+        sx={{
+          p: { xs: 1, sm: 1.5 },
+          pt: 2,
+          minHeight: { xs: 50, sm: 60 },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography
+          variant="subtitle2"
+          fontWeight="bold"
+          noWrap
+          sx={{
+            fontSize: { xs: "0.875rem", sm: "1rem" },
+            mb: 0.5,
+          }}
+        >
           {name}
         </Typography>
-        <Typography variant="body2" noWrap>
+        <Typography
+          variant="body2"
+          noWrap
+          sx={{
+            fontSize: { xs: "0.75rem", sm: "0.875rem" },
+            opacity: 0.8,
+          }}
+        >
           {artistName ?? "Unknown Artist"}
         </Typography>
       </CardContent>

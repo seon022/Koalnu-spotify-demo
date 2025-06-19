@@ -8,7 +8,6 @@ import { Artist } from "../../../models/artist";
 interface ArtistCardProps {
   list: Artist[];
 }
-
 const ArtistContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "100%",
@@ -19,12 +18,15 @@ const ArtistContainer = styled(Box)(({ theme }) => ({
   alignItems: "center",
   padding: theme.spacing(2),
   borderRadius: "10px",
-  backgroundColor: "#121212",
-  transition: "transform 0.3s",
+  backgroundColor: theme.palette.background.default,
+  transition: "transform 0.3s, box-shadow 0.3s",
   cursor: "pointer",
+  boxShadow: "0 2px 12px 0 rgba(0,0,0,0.12)",
+
   "&:hover": {
-    transform: "scale(1.05)",
-    backgroundColor: "#1a1a1a",
+    backgroundColor: theme.palette.action.hover,
+    boxShadow: "0 4px 24px 0 rgba(0,0,0,0.18)",
+    transform: "scale(1.01)",
   },
   "&:hover .hover-button": {
     opacity: 1,
@@ -62,7 +64,7 @@ const ArtistCard = ({ list }: ArtistCardProps) => {
           <ArtistImage alt={item.name} src={item.images?.[0]?.url || ""} />
           <Typography
             variant="subtitle2"
-            sx={{ color: "#fff", textAlign: "center" }}
+            sx={{ color: "primary.main", textAlign: "center" }}
           >
             {item.name}
           </Typography>

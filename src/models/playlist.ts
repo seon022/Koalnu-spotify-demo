@@ -73,3 +73,22 @@ export interface AddItemToPlaylistRequest {
   position?: number;
   uris?: string[];
 }
+export interface FeaturedPlaylistsRequest {
+  local: string;
+  limit: number;
+  offset: number;
+}
+export interface FeaturedPlaylistsResponse {
+  message?: string;
+  playlists: Playlists;
+}
+
+export interface Playlists {
+  href: string;
+  items: SimplifiedPlaylist[];
+  limit: number;
+  next: string | null;
+  offset: number;
+  previous: string | null;
+  total: number;
+}

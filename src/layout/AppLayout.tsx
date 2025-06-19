@@ -34,7 +34,7 @@ const MainContent = styled("main")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     margin: 0,
     padding: "16px",
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 

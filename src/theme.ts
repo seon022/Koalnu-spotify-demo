@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { brown, pink } from "@mui/material/colors";
 
 const PINK = "#D9B4B7";
 const PINK_LIGHT = "#D9B4B7";
@@ -35,7 +34,7 @@ const theme = createTheme({
     fontFamily: '"Pretendard", san-serif',
     h1: {
       fontWeight: 700,
-      fontSize: "20px",
+      fontSize: "24px",
     },
     h2: {
       fontSize: "0.9rem",

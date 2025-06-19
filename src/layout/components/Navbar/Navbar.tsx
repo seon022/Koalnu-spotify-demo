@@ -1,5 +1,8 @@
+import { EmojiEmotions } from "@mui/icons-material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import ProfileToggle from "./ProfileToggle";
 import LoginButton from "../../../common/components/LoginButton";
@@ -7,6 +10,7 @@ import useGetCurrentUserProfile from "../../../hooks/useGetCurrentUserProfile";
 
 const Navbar = () => {
   const { data: userProfile } = useGetCurrentUserProfile();
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -17,14 +21,40 @@ const Navbar = () => {
       padding="10px"
       paddingLeft={"14px"}
     >
-      <Typography
-        color="textSecondary"
-        variant="subtitle1"
-        fontSize={20}
-        fontWeight="bold"
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 0.6,
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          navigate("/");
+        }}
       >
-        👩‍💻 Music
-      </Typography>
+        <EmojiEmotions
+          sx={{
+            color: "primary.main",
+            fontSize: 28,
+            verticalAlign: "middle",
+          }}
+        />
+        <Typography
+          color="textSecondary"
+          variant="subtitle1"
+          fontSize={20}
+          fontWeight="bold"
+        >
+          SY Music
+        </Typography>
+        <EmojiEmotions
+          sx={{
+            color: "primary.main",
+            fontSize: 28,
+            verticalAlign: "middle",
+          }}
+        />
+      </Box>
       {!userProfile ? (
         <LoginButton />
       ) : (

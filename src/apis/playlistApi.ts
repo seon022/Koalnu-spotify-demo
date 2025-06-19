@@ -1,6 +1,8 @@
+import axios from "axios";
 import {
   AddItemToPlaylistRequest,
   CreatePlaylistRequest,
+  FeaturedPlaylistsResponse,
   GetCurrentUserPlaylistResponse,
   GetCurrentUserPlaylsitRequest,
   GetPlaylistItemsRequest,
@@ -9,6 +11,7 @@ import {
   Playlist,
 } from "models/playlist";
 
+import { SPOTIFY_BASE_URL } from "../configs/commonConfig";
 import api from "../utils/api";
 
 export const getCurrentUserPlaylists = async ({

@@ -7,6 +7,7 @@ import useGetNewReleases from "../../../hooks/useGetNewReleases";
 
 const NewReleases = () => {
   const { data, error, isLoading } = useGetNewReleases();
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -14,8 +15,8 @@ const NewReleases = () => {
     return <ErrorMessage errorMessage={error.message} />;
   }
   return (
-    <Box pb={2}>
-      <Typography variant="h1" marginBottom="10px">
+    <Box>
+      <Typography variant="h1" marginBottom="14px">
         New Released Albums
       </Typography>
       {data && data.albums.items.length > 0 ? (
