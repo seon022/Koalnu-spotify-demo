@@ -97,9 +97,7 @@ const MoreButton = styled(IconButton)(({ theme }) => ({
 const SongCard = ({ list }: SongCardProps) => {
   const tracksToShow = list.slice(0, 4);
 
-  const handlePlay = (track: Track) => {
-    console.log("Play track:", track);
-  };
+  const handlePlay = (track: Track) => {};
 
   return (
     <Box display="flex" flexDirection="column" gap={2}>

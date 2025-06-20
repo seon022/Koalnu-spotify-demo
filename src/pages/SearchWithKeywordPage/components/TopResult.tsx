@@ -39,6 +39,10 @@ const TopResultImage = styled(Avatar)(({ theme }) => ({
   marginBottom: theme.spacing(2.5),
   boxShadow: "0 2px 8px 0 rgba(0,0,0,0.25)",
   fontSize: theme.spacing(12),
+  [theme.breakpoints.down("sm")]: {
+    width: theme.spacing(16),
+    height: theme.spacing(16),
+  },
 }));
 
 const TopResult = ({ data }: TopResultProps) => {

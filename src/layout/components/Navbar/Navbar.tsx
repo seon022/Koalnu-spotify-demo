@@ -21,7 +21,7 @@ const Navbar = () => {
           xs: "56px",
           sm: "64px",
         },
-        padding: "20px 12px 10px 12px",
+        padding: { xs: "20px 12px 10px 12px", sm: "16px 16px 10px 16px" },
       }}
     >
       <Box

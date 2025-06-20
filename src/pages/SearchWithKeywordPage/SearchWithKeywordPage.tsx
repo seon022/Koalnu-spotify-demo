@@ -1,5 +1,5 @@
 import { styled, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, height } from "@mui/system";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -44,6 +44,7 @@ const TopResultBox = styled(Box)(({ theme }) => ({
   minWidth: 0,
   [theme.breakpoints.down("md")]: {
     width: "100%",
+    marginBottom: "20px",
   },
 }));
 
@@ -75,7 +76,6 @@ const SearchWithKeywordPage = () => {
     limit: 10,
     offset: 0,
   });
-  console.log(data);
 
   const handleSearch = (e?: React.SyntheticEvent) => {
     if (e) e.preventDefault();
@@ -102,13 +102,13 @@ const SearchWithKeywordPage = () => {
       {isLoading && <LoadingSpinner />}
       <TopResultAndSongsContainer>
         <TopResultBox>
-          <Typography variant="h6" sx={{ mb: 2 }}>
+          <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
             상위 검색 결과
           </Typography>
           {topResultData && <TopResult data={topResultData} />}
         </TopResultBox>
         <SongsBox>
-          <Typography variant="h6" sx={{ mb: 2 }}>
+          <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
             노래
           </Typography>
           {data?.pages.map((page, index) => (
@@ -117,7 +117,7 @@ const SearchWithKeywordPage = () => {
         </SongsBox>
       </TopResultAndSongsContainer>
       <Box my={4}>
-        <Typography variant="h6" sx={{ mb: 2 }}>
+        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
           아티스트
         </Typography>
         {data?.pages.map((page, index) => (
@@ -125,7 +125,7 @@ const SearchWithKeywordPage = () => {
         ))}
       </Box>
       <AlbumBox>
-        <Typography variant="h6" sx={{ mb: 2 }}>
+        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
           앨범
         </Typography>
         <Box
