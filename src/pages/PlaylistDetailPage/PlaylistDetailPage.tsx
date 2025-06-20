@@ -35,9 +35,6 @@ const PlaylistContainer = styled("div")(({ theme }) => ({
   msOverflowStyle: "none",
   borderRadius: "10px",
   backgroundColor: theme.palette.action.hover,
-  [theme.breakpoints.down("sm")]: {
-    maxHeight: "calc(100vh -280px)",
-  },
 }));
 
 const CustomTableCell = styled(TableCell)(({ theme }) => ({

@@ -1,5 +1,4 @@
 import { EmojiEmotions } from "@mui/icons-material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,8 +21,7 @@ const Navbar = () => {
           xs: "56px",
           sm: "64px",
         },
-        px: 2,
-        py: 3,
+        padding: "20px 12px 10px 12px",
       }}
     >
       <Box

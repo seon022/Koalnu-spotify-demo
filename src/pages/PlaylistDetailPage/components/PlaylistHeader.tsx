@@ -2,6 +2,8 @@ import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import { Box, styled, Typography } from "@mui/material";
 import React from "react";
 
+import useIsMobile from "../../../hooks/useIsMobile";
+
 export interface PlaylistHeaderProps {
   name: string;
   imageUrl: string;
@@ -12,11 +14,14 @@ export interface PlaylistHeaderProps {
 
 const Wrapper = styled(Box)(({ theme }) => ({
   display: "flex",
-  alignItems: "start",
+  alignItems: "center",
   gap: theme.spacing(2),
   padding: "24px 20px",
   background: "rgba(255, 255, 255, 0.04)",
   borderRadius: theme.spacing(2),
+  [theme.breakpoints.down("sm")]: {
+    padding: "12px 16px",
+  },
 }));
 
 const PlaylistImage = styled(Box)(({ theme }) => ({
@@ -30,6 +35,10 @@ const PlaylistImage = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  [theme.breakpoints.down("sm")]: {
+    width: 80,
+    height: 80,
+  },
 }));
 
 const PlaylistHeader = ({
@@ -40,7 +49,7 @@ const PlaylistHeader = ({
   type,
 }: PlaylistHeaderProps) => {
   const hasImage = !!imageUrl;
-
+  const isMobile = useIsMobile();
   return (
     <Wrapper>
       <PlaylistImage>
@@ -55,9 +64,13 @@ const PlaylistHeader = ({
         )}
       </PlaylistImage>
       <Box>
-        <Typography variant="overline" sx={{ opacity: 0.8 }}>
-          {type}
-        </Typography>
+        {isMobile ? (
+          ""
+        ) : (
+          <Typography variant="overline" sx={{ opacity: 0.8 }}>
+            {type}
+          </Typography>
+        )}
         <Typography variant="h5" fontWeight="bold" gutterBottom>
           {name}
         </Typography>
