@@ -19,7 +19,8 @@ const PlaylistContainer = styled("div")(({ theme }) => ({
   scrollbarWidth: "none",
   msOverflowStyle: "none",
   [theme.breakpoints.down("sm")]: {
-    maxHeight: "calc(100vh - 65px - 119px)",
+    maxHeight: "calc(100vh - 160px)",
+    paddingBottom: "60px",
   },
 }));
 

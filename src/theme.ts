@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { brown } from "@mui/material/colors";
 
 const PINK = "#D9B4B7";
 const PINK_LIGHT = "#D9B4B7";
@@ -80,6 +79,20 @@ const theme = createTheme({
           padding: "8px 32px",
           fontWeight: 700,
           fontSize: "16px",
+        },
+      },
+    },
+    MuiBottomNavigationAction: {
+      styleOverrides: {
+        root: {
+          color: BROWN,
+          fontSize: "13px",
+          "&.Mui-selected": {
+            color: PINK_LIGHT,
+          },
+        },
+        label: {
+          "&.Mui-selected": { fontWeight: 600 },
         },
       },
     },

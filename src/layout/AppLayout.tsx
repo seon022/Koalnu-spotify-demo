@@ -1,13 +1,15 @@
+import { Padding } from "@mui/icons-material";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, styled, Typography } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 import Library from "./components/Library";
 import LibraryHead from "./components/LibraryHead";
 import Navbar from "./components/Navbar/Navbar";
-
+import SimpleBottomNavigation from "./components/SimpleBottomNavigation";
 const Layout = styled("div")(({ theme }) => ({
   height: "100vh",
   display: "flex",
@@ -34,6 +36,7 @@ const MainContent = styled("main")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     margin: 0,
     padding: "16px",
+    borderRadius: "0",
     backgroundColor: theme.palette.background.paper,
   },
 }));
@@ -89,6 +92,9 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
 }));
 
 const AppLayout = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Layout>
       <Navbar />
@@ -118,6 +124,7 @@ const AppLayout = () => {
         <MainContent>
           <Outlet />
         </MainContent>
+        {isMobile && <SimpleBottomNavigation />}
       </ContentsLayout>
     </Layout>
   );

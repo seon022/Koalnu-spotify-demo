@@ -13,10 +13,11 @@ const SearchBox = styled("div")(({ theme }) => ({
   maxWidth: 700,
   display: "flex",
   alignItems: "center",
-  marginBottom: "20px",
+  marginBottom: "16px",
 }));
 const SearchButton = styled("div")(({ theme }) => ({
   color: "#fff",
+  marginTop: 3,
 }));
 interface SearchFieldProps {
   value: string;

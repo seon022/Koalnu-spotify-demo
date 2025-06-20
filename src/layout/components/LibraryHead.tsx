@@ -11,8 +11,7 @@ const Head = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  padding: "8px",
-  marginBottom: "10px",
+  padding: "8px 4px",
 });
 
 const LibraryHead = () => {
@@ -30,7 +29,7 @@ const LibraryHead = () => {
     <Head>
       <Box display="flex">
         <BookmarkIcon sx={{ marginRight: "20px" }} />
-        <Typography variant="h2" fontWeight={700}>
+        <Typography variant="h2" fontWeight={700} mb={2}>
           Your Library
         </Typography>
       </Box>

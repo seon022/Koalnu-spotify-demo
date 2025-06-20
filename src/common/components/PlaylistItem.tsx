@@ -27,18 +27,21 @@ const PlaylistItem = ({
       display="flex"
       alignItems="center"
       gap={2}
-      px={2}
-      py={1}
       sx={{
         cursor: "pointer",
         borderRadius: 1,
         transition: "background-color 0.2s",
-        backgroundColor: selected ? "rgba(148, 49, 115,0.16)" : "transparent",
+        backgroundColor: selected
+          ? "rgba(148, 49, 115,0.16)"
+          : "rgba(255, 255, 255, 0.06)",
         "&:hover": {
           backgroundColor: selected
             ? "rgba(148, 49, 115, 0.16)"
             : "rgba(148, 49, 115, 0.12)",
         },
+        pl: 1,
+        py: 1,
+        mb: 1,
       }}
     >
       {imageUrl ? (

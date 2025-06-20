@@ -17,9 +17,14 @@ const Navbar = () => {
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      height="64px"
-      padding="10px"
-      paddingLeft={"14px"}
+      sx={{
+        height: {
+          xs: "56px",
+          sm: "64px",
+        },
+        px: 2,
+        py: 3,
+      }}
     >
       <Box
         sx={{

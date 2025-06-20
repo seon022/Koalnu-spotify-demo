@@ -13,7 +13,6 @@ import SearchField from "../../common/components/SearchField";
 import { useResponsiveCount } from "../../hooks/useResponsiveCount";
 import useSearchItemsByKeyword from "../../hooks/useSearchItemsByKeyword";
 import { SEARCH_TYPE } from "../../models/search";
-import { findTopResult } from "../../utils/findTopResult";
 
 const SearchWithKeywordContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
@@ -25,7 +24,8 @@ const SearchWithKeywordContainer = styled("div")(({ theme }) => ({
   scrollbarWidth: "none",
   msOverflowStyle: "none",
   [theme.breakpoints.down("sm")]: {
-    maxHeight: "calc(100vh - 65px - 119px)",
+    maxHeight: "calc(100vh - 140px)",
+    paddingBottom: "20px",
   },
 }));
 const TopResultAndSongsContainer = styled(Box)(({ theme }) => ({

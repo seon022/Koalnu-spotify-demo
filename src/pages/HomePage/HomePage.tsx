@@ -16,7 +16,7 @@ const HomeContainer = styled("div")(({ theme }) => ({
   scrollbarWidth: "none",
   msOverflowStyle: "none",
   [theme.breakpoints.down("sm")]: {
-    maxHeight: "calc(100vh - 40px)",
+    maxHeight: "calc(100vh - 120px)",
   },
 }));
 const HomePage = () => {

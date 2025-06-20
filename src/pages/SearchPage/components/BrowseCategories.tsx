@@ -1,4 +1,4 @@
-import { Grid, styled } from "@mui/material";
+import { Box, Grid, styled, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
@@ -20,9 +20,10 @@ const CategoriesContainer = styled("div")(({ theme }) => ({
   scrollbarWidth: "none",
   msOverflowStyle: "none",
   [theme.breakpoints.down("sm")]: {
-    maxHeight: "calc(100vh - 65px - 119px)",
+    maxHeight: "calc(100vh - 200px)",
   },
   cursor: "pointer",
+  paddingBottom: "20px",
 }));
 
 const BrowseCategories = () => {
@@ -55,11 +56,13 @@ const BrowseCategories = () => {
 
   return (
     <CategoriesContainer>
-      <h2>둘러보기</h2>
+      <Typography variant="h1" sx={{ mb: 2 }}>
+        둘러보기
+      </Typography>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 3, sm: 6, md: 12, lg: 12, xl: 12 }}
+        columns={{ xs: 2, sm: 6, md: 12, lg: 12, xl: 12 }}
       >
         {categories.map((item, idx) => (
           <Grid size={{ xs: 1, sm: 3, md: 4, lg: 4, xl: 3 }} key={item.id}>
