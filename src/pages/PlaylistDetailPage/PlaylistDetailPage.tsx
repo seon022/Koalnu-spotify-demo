@@ -13,6 +13,7 @@ import { Navigate, useParams } from "react-router-dom";
 import DesktopPlaylistItem from "./components/DesktopPlaylistItem";
 import EmptyPlaylistItemWithSearch from "./components/EmptyPlaylistItemWithSearch";
 import LoginRequiredNotice from "./components/LoginRequireNotice";
+import MobilePlaylistItem from "./components/MobilePlaylistItem";
 import PlaylistHeader from "./components/PlaylistHeader";
 import ErrorMessage from "../../common/components/ErrorMessage";
 import LoadingSpinner from "../../common/components/Loading/LoadingSpinner";
@@ -20,6 +21,7 @@ import { PAGE_LIMIT } from "../../configs/commonConfig";
 import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
 import useGetPlaylist from "../../hooks/useGetPlaylist";
 import useGetPlaylistItems from "../../hooks/useGetPlaylistItem";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const PlaylistContainer = styled("div")(({ theme }) => ({
   overflowY: "auto",
@@ -51,6 +53,7 @@ const PlaylistDetailPage = () => {
     playlist_id: id ?? "",
   });
   const { data: userProfile } = useGetCurrentUserProfile();
+  const isMobile = useIsMobile();
 
   const {
     data: playlistItems,
@@ -100,24 +103,35 @@ const PlaylistDetailPage = () => {
             aria-label="sticky table"
             sx={{ color: "primary.main" }}
           >
-            <TableHead>
-              <TableRow>
-                <CustomTableCell>#</CustomTableCell>
-                <CustomTableCell>Title</CustomTableCell>
-                <CustomTableCell>Album</CustomTableCell>
-                <CustomTableCell>Date added</CustomTableCell>
-                <CustomTableCell>Duration</CustomTableCell>
-              </TableRow>
-            </TableHead>
+            {isMobile ? (
+              ""
+            ) : (
+              <TableHead>
+                <TableRow>
+                  <CustomTableCell>#</CustomTableCell>
+                  <CustomTableCell>Title</CustomTableCell>
+                  <CustomTableCell>Album</CustomTableCell>
+                  <CustomTableCell>Date added</CustomTableCell>
+                  <CustomTableCell>Duration</CustomTableCell>
+                </TableRow>
+              </TableHead>
+            )}
             <TableBody>
               {playlistItems?.pages.map((page, pageIndex) =>
-                page.items.map((item, itemIndex) => (
-                  <DesktopPlaylistItem
-                    item={item}
-                    key={pageIndex * PAGE_LIMIT + itemIndex + 1}
-                    index={pageIndex * PAGE_LIMIT + itemIndex + 1}
-                  />
-                )),
+                page.items.map((item, itemIndex) =>
+                  isMobile ? (
+                    <MobilePlaylistItem
+                      item={item}
+                      key={pageIndex * PAGE_LIMIT + itemIndex + 1}
+                    />
+                  ) : (
+                    <DesktopPlaylistItem
+                      item={item}
+                      key={pageIndex * PAGE_LIMIT + itemIndex + 1}
+                      index={pageIndex * PAGE_LIMIT + itemIndex + 1}
+                    />
+                  ),
+                ),
               )}
             </TableBody>
           </Table>

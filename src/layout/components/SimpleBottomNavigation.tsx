@@ -15,6 +15,7 @@ export default function SimpleBottomNavigation() {
   const currentValue = React.useMemo(() => {
     if (location.pathname.startsWith("/search")) return 1;
     if (location.pathname.startsWith("/playlist")) return 2;
+    return 0;
   }, [location.pathname]);
 
   return (
