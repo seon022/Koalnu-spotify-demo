@@ -131,10 +131,6 @@ koalnu-spotify-demo/
 
 ### 보안 고려
 - PKCE + Authorization Code Flow로 사용자 데이터 인증  
-- Client Credentials Flow는 **공용 데이터 조회용으로 한정**  
-- CSRF 방지를 위한 `state` parameter 사용  
-- ⚠️ 현재는 LocalStorage 기반 토큰 저장 → 학습용 구조  
-- 🚀 실제 서비스에서는 Refresh Token + HttpOnly Cookie 기반 관리로 보안성 강화  
 
 ---
 
