@@ -60,43 +60,21 @@ Spotify Web API를 활용해 **음악 검색, 프로필 조회, 플레이리스�
 ---
 
 ## ✨ 주요 기능
+### 🔐 인증 및 로그인 상태 관리
 
-### 🔐 인증 및 데이터 접근 Flow
+**Spotify Web API**의 Client Credentials Flow와 PKCE Flow를 활용해 공개 데이터와 로그인, 사용자 데이터 접근을 구현했습니다.
 
-#### 1️⃣ Client Credentials Flow (로그인 필요 없음)
-- 로그인 없이 접근 가능한 **공개 데이터** 조회용
-  - 예: 음악/앨범/아티스트 검색, 메타데이터 조회
-- 서버 사이드에서 주로 사용되며, 클라이언트 구현 시 `client_secret` 노출 위험 있음
-- **사용자 계정 기반 데이터(프로필, 플레이리스트 등) 접근 불가**
-- 구현: `useClientCredentialToken` 훅 + React Query 캐싱
+#### 1️⃣ Flow 구조
 
-#### 2️⃣ Authorization Code Flow with PKCE (사용자 로그인 필요)
-- **Spotify 사용자 계정 기반 데이터** 접근용
-  - 예: 사용자 프로필 조회, 플레이리스트 생성/관리
-- SPA/브라우저 환경에서 안전하게 사용할 수 있는 방식
-- PKCE 기반 `code_verifier` + `code_challenge`로 토큰 교환
-- `refresh_token` 발급 가능 (현 버전에서는 자동 갱신 로직 미구현)
-- 구현: Zustand 상태 관리 + persist로 access_token 저장
+- **Client Credentials Flow** (로그인 필요 없음)
+  - 공개 데이터 조회용 (음악/앨범/아티스트 검색)
+  - 사용자 계정 데이터 접근 불가
+  - 클라이언트에서 token 발급 가능하지만, client_secret 노출 주의
 
-#### 토큰 저장 전략
-- 현재: `Zustand + persist`로 access_token을 LocalStorage에 저장 → 새로고침 시 로그인 유지
-- ⚠️ 한계: LocalStorage는 XSS 공격에 취약
-- 🚀 개선 방향
-  - `access_token`은 메모리 기반으로 관리
-  - `refresh_token`은 **HttpOnly Secure Cookie**로 저장하여 보안 강화
-
----
-
-### 🔄 기능별 Flow 구분
-
-| 기능 | Flow | 로그인 필요 여부 |
-|------|------|----------------|
-| 음악/앨범/아티스트 검색 | Client Credentials | ❌ |
-| 공개 플레이리스트 조회 | Client Credentials | ❌ |
-| 사용자 프로필 조회 | PKCE | ✅ |
-| 사용자 플레이리스트 조회/생성/편집 | PKCE | ✅ |
-
-> 이렇게 구분함으로써, **보안은 유지하면서 사용자와 공개 데이터를 효율적으로 관리**할 수 있습니다.
+- **Authorization Code Flow with PKCE** (사용자 로그인 필요)
+  - Spotify 사용자 계정 기반 데이터 접근용 (프로필 조회, 플레이리스트 관리)
+  - PKCE 기반 `code_verifier` + `code_challenge`로 access token 발급
+  - refresh token 발급 가능 → 만료 시 서버에서 새 access token 발급
 
 ---
 
